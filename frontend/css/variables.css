@@ -1,0 +1,24 @@
+:root {
+    --background: #f7f8fc;
+    --surface: #ffffff;
+
+    --text: #111827;
+    --muted: #6b7280;
+
+    --border: #e5e7eb;
+
+    --primary: #111827;
+    --primary-hover: #1f2937;
+
+    --success: #16a34a;
+    --danger: #dc2626;
+
+    --radius-small: 10px;
+    --radius-medium: 16px;
+    --radius-large: 24px;
+
+    --shadow-small: 0 4px 14px rgba(0, 0, 0, 0.06);
+    --shadow-medium: 0 16px 40px rgba(0, 0, 0, 0.08);
+
+    --max-width: 1180px;
+}

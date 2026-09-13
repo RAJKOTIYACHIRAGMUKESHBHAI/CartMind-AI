@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CartMind AI</title>
+
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+    <script src="js/api.js" defer></script>
+    <script src="js/app.js" defer></script>
+</head>
+
+<body>
+
+<header class="navbar">
+    <div class="brand">
+        <div class="brand-icon">C</div>
+        <span>CartMind AI</span>
+    </div>
+
+    <div class="status">
+        <span class="status-dot"></span>
+        AI Commerce Assistant
+    </div>
+</header>
+
+<main>
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <p class="eyebrow">AI-POWERED COMMERCE DECISION ENGINE</p>
+
+            <h1>
+                Find.
+                <span>Compare.</span>
+                Understand.
+                Decide.
+            </h1>
+
+            <p class="hero-text">
+                Tell CartMind what you need in natural language.
+                CartMind is designed to understand your requirements
+                and help you make a better shopping decision.
+            </p>
+
+            <form id="searchForm" class="search-form">
+
+                <label for="searchInput" class="sr-only">
+                    Enter your shopping requirement
+                </label>
+
+                <input
+                    id="searchInput"
+                    type="text"
+                    placeholder="₹50,000 ke andar coding ke liye 16GB RAM laptop chahiye"
+                    autocomplete="off"
+                >
+
+                <button id="searchButton" type="submit">
+                    Search
+                </button>
+
+            </form>
+
+            <div class="examples">
+
+                <p>Try:</p>
+
+                <button type="button" class="example-query">
+                    ₹50,000 ke andar coding laptop
+                </button>
+
+                <button type="button" class="example-query">
+                    Best phone under ₹30,000
+                </button>
+
+                <button type="button" class="example-query">
+                    Budget family grocery
+                </button>
+
+            </div>
+
+            <div id="loadingState" class="message hidden">
+                Understanding your requirement...
+            </div>
+
+            <div id="errorState" class="message error hidden"></div>
+
+        </div>
+
+    </section>
+
+    <section class="feature-grid">
+
+        <div class="feature-card">
+            <h3>Understand</h3>
+            <p>
+                Natural-language shopping requirements can be processed
+                for AI understanding.
+            </p>
+        </div>
+
+        <div class="feature-card">
+            <h3>Compare</h3>
+            <p>
+                Products can be compared using consistent decision criteria.
+            </p>
+        </div>
+
+        <div class="feature-card">
+            <h3>Decide</h3>
+            <p>
+                Recommendations are designed to be explained using verified data.
+            </p>
+        </div>
+
+    </section>
+
+</main>
+
+<footer>
+    CartMind AI — Find. Compare. Understand. Decide.
+</footer>
+
+</body>
+</html>

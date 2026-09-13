@@ -1,0 +1,48 @@
+@media (max-width: 760px) {
+
+    .navbar {
+        padding: 16px;
+    }
+
+    .status {
+        display: none;
+    }
+
+    .hero {
+        padding: 50px 16px 30px;
+    }
+
+    .hero h1 {
+        font-size: 46px;
+    }
+
+    .hero-text {
+        font-size: 16px;
+    }
+
+    .search-form {
+        flex-direction: column;
+    }
+
+    .search-form input {
+        padding: 16px;
+    }
+
+    .search-form button {
+        min-height: 52px;
+    }
+
+    .examples {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .example-query {
+        width: 100%;
+    }
+
+    .feature-grid {
+        grid-template-columns: 1fr;
+        padding: 16px;
+    }
+}
