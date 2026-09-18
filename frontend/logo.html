@@ -1,0 +1,176 @@
+<!-- CartMind AI 3D Logo -->
+
+<div class="cm-logo" aria-label="CartMind AI">
+  <div class="cm-logo-orbit orbit-one"></div>
+  <div class="cm-logo-orbit orbit-two"></div>
+
+  <div class="cm-logo-core">
+    <div class="cm-logo-cube">
+      <span>C</span>
+      <span>M</span>
+    </div>
+  </div>
+
+  <div class="cm-logo-glow"></div>
+</div>
+
+<style>
+.cm-logo {
+  position: relative;
+  width: 82px;
+  height: 82px;
+  display: grid;
+  place-items: center;
+  perspective: 700px;
+  isolation: isolate;
+}
+
+.cm-logo-core {
+  position: relative;
+  z-index: 3;
+  width: 54px;
+  height: 54px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: 17px;
+  background:
+    linear-gradient(
+      145deg,
+      rgba(124,92,255,.95),
+      rgba(34,211,238,.75)
+    );
+  box-shadow:
+    0 12px 35px rgba(0,0,0,.45),
+    0 0 28px rgba(124,92,255,.35);
+  transform: rotateX(12deg) rotateY(-15deg);
+  animation: cmLogoFloat 4s ease-in-out infinite;
+}
+
+.cm-logo-cube {
+  width: 39px;
+  height: 39px;
+  display: grid;
+  place-items: center;
+  border-radius: 11px;
+  background: rgba(5,8,20,.82);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.12);
+  transform: translateZ(18px);
+}
+
+.cm-logo-cube span {
+  position: absolute;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 900;
+  letter-spacing: -.08em;
+}
+
+.cm-logo-cube span:first-child {
+  transform: translateX(-5px);
+}
+
+.cm-logo-cube span:last-child {
+  transform: translateX(6px);
+  color: #22d3ee;
+}
+
+.cm-logo-orbit {
+  position: absolute;
+  z-index: 1;
+  width: 74px;
+  height: 30px;
+  border: 1px solid rgba(34,211,238,.65);
+  border-radius: 50%;
+  box-shadow:
+    0 0 14px rgba(34,211,238,.22);
+}
+
+.orbit-one {
+  transform: rotateX(65deg) rotateZ(-18deg);
+  animation: cmOrbitOne 5s linear infinite;
+}
+
+.orbit-two {
+  width: 68px;
+  height: 26px;
+  border-color: rgba(124,92,255,.7);
+  transform: rotateY(65deg) rotateZ(22deg);
+  animation: cmOrbitTwo 4.5s linear infinite;
+}
+
+.cm-logo-glow {
+  position: absolute;
+  z-index: 0;
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  background:
+    radial-gradient(
+      circle,
+      rgba(124,92,255,.38),
+      transparent 70%
+    );
+  filter: blur(9px);
+  animation: cmGlow 3s ease-in-out infinite;
+}
+
+@keyframes cmLogoFloat {
+  0%, 100% {
+    transform: translateY(0)
+      rotateX(12deg)
+      rotateY(-15deg);
+  }
+
+  50% {
+    transform: translateY(-6px)
+      rotateX(16deg)
+      rotateY(15deg);
+  }
+}
+
+@keyframes cmOrbitOne {
+  from {
+    transform: rotateX(65deg)
+      rotateZ(0deg);
+  }
+
+  to {
+    transform: rotateX(65deg)
+      rotateZ(360deg);
+  }
+}
+
+@keyframes cmOrbitTwo {
+  from {
+    transform: rotateY(65deg)
+      rotateZ(0deg);
+  }
+
+  to {
+    transform: rotateY(65deg)
+      rotateZ(-360deg);
+  }
+}
+
+@keyframes cmGlow {
+  0%, 100% {
+    opacity: .55;
+    transform: scale(.9);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cm-logo-core,
+  .cm-logo-orbit,
+  .cm-logo-glow {
+    animation: none;
+  }
+}
+</style>

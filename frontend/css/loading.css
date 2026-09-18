@@ -1,0 +1,268 @@
+/* =========================================
+   CartMind AI - Loading States
+   ========================================= */
+
+.loading-state {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 300px;
+  padding: 40px 20px;
+  text-align: center;
+  border: 1px solid rgba(255,255,255,.07);
+  border-radius: 22px;
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(124,92,255,.07),
+      transparent 65%
+    ),
+    rgba(255,255,255,.018);
+}
+
+/* =========================================
+   Premium AI Spinner
+   ========================================= */
+
+.ai-loader {
+  position: relative;
+  width: 68px;
+  height: 68px;
+  margin-bottom: 18px;
+}
+
+.ai-loader::before,
+.ai-loader::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+}
+
+.ai-loader::before {
+  border: 2px solid rgba(255,255,255,.06);
+}
+
+.ai-loader::after {
+  border: 2px solid transparent;
+  border-top-color: #7c5cff;
+  border-right-color: #22d3ee;
+  animation: loaderSpin 1s linear infinite;
+}
+
+.ai-loader-core {
+  position: absolute;
+  inset: 14px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background:
+    radial-gradient(
+      circle,
+      rgba(124,92,255,.25),
+      rgba(5,8,20,.95)
+    );
+  border: 1px solid rgba(255,255,255,.10);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 900;
+  box-shadow:
+    0 0 20px rgba(124,92,255,.18);
+}
+
+@keyframes loaderSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Loading text */
+
+.loading-state h3 {
+  margin: 0;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.loading-state p {
+  margin: 7px 0 0;
+  color: #64748b;
+  font-size: 11px;
+}
+
+/* =========================================
+   Inline spinner
+   ========================================= */
+
+.spinner {
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(255,255,255,.20);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: loaderSpin .7s linear infinite;
+}
+
+.btn .spinner {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 7px;
+}
+
+/* =========================================
+   Skeleton
+   ========================================= */
+
+.skeleton {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  background: rgba(255,255,255,.06);
+}
+
+.skeleton::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255,255,255,.08),
+      transparent
+    );
+  animation: skeletonShimmer 1.5s infinite;
+}
+
+@keyframes skeletonShimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.skeleton-line {
+  height: 12px;
+  margin-bottom: 9px;
+}
+
+.skeleton-line.short {
+  width: 45%;
+}
+
+.skeleton-line.medium {
+  width: 70%;
+}
+
+.skeleton-line.long {
+  width: 92%;
+}
+
+.skeleton-box {
+  width: 100%;
+  height: 180px;
+  margin-bottom: 16px;
+  border-radius: 15px;
+}
+
+/* Skeleton product */
+
+.product-loading-card {
+  padding: 18px;
+  border: 1px solid rgba(255,255,255,.06);
+  border-radius: 20px;
+  background: rgba(255,255,255,.025);
+}
+
+/* Loading dots */
+
+.loading-dots {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.loading-dots span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #94a3b8;
+  animation: loadingDot 1.2s ease-in-out infinite;
+}
+
+.loading-dots span:nth-child(2) {
+  animation-delay: .15s;
+}
+
+.loading-dots span:nth-child(3) {
+  animation-delay: .3s;
+}
+
+@keyframes loadingDot {
+  0%, 60%, 100% {
+    opacity: .25;
+    transform: translateY(0);
+  }
+
+  30% {
+    opacity: 1;
+    transform: translateY(-4px);
+  }
+}
+
+/* =========================================
+   Full page loading
+   ========================================= */
+
+.page-loading {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(124,92,255,.08),
+      #050814 65%
+    );
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.page-loading-content {
+  display: grid;
+  place-items: center;
+  text-align: center;
+}
+
+.page-loading-content span {
+  margin-top: 14px;
+  color: #94a3b8;
+  font-size: 11px;
+}
+
+/* =========================================
+   Responsive / Accessibility
+   ========================================= */
+
+@media (max-width: 600px) {
+  .loading-state {
+    min-height: 250px;
+    padding: 30px 15px;
+  }
+
+  .skeleton-box {
+    height: 150px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ai-loader::after,
+  .spinner,
+  .skeleton::after,
+  .loading-dots span {
+    animation: none;
+  }
+}

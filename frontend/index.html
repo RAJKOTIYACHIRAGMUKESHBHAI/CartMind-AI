@@ -1,132 +1,171 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>CartMind AI</title>
-
-    <link rel="stylesheet" href="css/variables.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/responsive.css">
-
-    <script src="js/api.js" defer></script>
-    <script src="js/app.js" defer></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Home | CartMind AI</title>
+<link rel="stylesheet" href="css/main.css">
 </head>
 
 <body>
 
 <header class="navbar">
-    <div class="brand">
-        <div class="brand-icon">C</div>
-        <span>CartMind AI</span>
-    </div>
+    
+<div class="container nav">
 
-    <div class="status">
-        <span class="status-dot"></span>
-        AI Commerce Assistant
-    </div>
+<a class="brand" href="index.html">
+    
+<a class="brand" href="index.html">
+<img
+    src="assets/logo/cartmind-main-logo(1).png"
+    alt="CartMind AI"
+    class="navbar-3d-logo"
+>
+
+<span>
+    <b>CartMind AI</b>
+    <small>AI shopping intelligence</small>
+</span>
+
+</a>
+<span>
+    
+<b>CartMind AI</b>
+<small>AI shopping intelligence</small>
+</span>
+</a>
+
+<nav class="navlinks">
+<a class="active" href="index.html">Home</a>
+<a href="products.html">Products</a>
+<a href="compare.html">Compare</a>
+<a href="assistant.html">AI Assistant</a>
+</nav>
+
+<div class="navbtns">
+<a class="btn" href="login.html">Login</a>
+<a class="btn primary" href="register.html">Register</a>
+<button class="menu">☰</button>
+</div>
+
+</div>
 </header>
 
-<main>
+<section class="hero container">
 
-    <section class="hero">
+<div>
 
-        <div class="hero-content">
+<span class="eyebrow">Intelligent shopping, redesigned</span>
 
-            <p class="eyebrow">AI-POWERED COMMERCE DECISION ENGINE</p>
+<h1>
+Smarter Search.<br>
+<em>Better Choices.</em>
+</h1>
 
-            <h1>
-                Find.
-                <span>Compare.</span>
-                Understand.
-                Decide.
-            </h1>
+<p>
+Tell CartMind AI what you need. Explore a premium AI-ready shopping experience designed around clearer decisions.
+</p>
 
-            <p class="hero-text">
-                Tell CartMind what you need in natural language.
-                CartMind is designed to understand your requirements
-                and help you make a better shopping decision.
-            </p>
+<form id="searchForm" class="search">
 
-            <form id="searchForm" class="search-form">
+<input
+id="searchInput"
+placeholder="Try: laptop for coding under my budget"
+required
+>
 
-                <label for="searchInput" class="sr-only">
-                    Enter your shopping requirement
-                </label>
+<button class="btn primary">
+Search with AI →
+</button>
 
-                <input
-                    id="searchInput"
-                    type="text"
-                    placeholder="₹50,000 ke andar coding ke liye 16GB RAM laptop chahiye"
-                    autocomplete="off"
-                >
+</form>
 
-                <button id="searchButton" type="submit">
-                    Search
-                </button>
+<div style="margin-top:12px">
 
-            </form>
+<button class="btn" data-query="laptop for coding">
+Laptop
+</button>
 
-            <div class="examples">
+<button class="btn" data-query="wireless headphones">
+Headphones
+</button>
 
-                <p>Try:</p>
+</div>
 
-                <button type="button" class="example-query">
-                    ₹50,000 ke andar coding laptop
-                </button>
+</div>
 
-                <button type="button" class="example-query">
-                    Best phone under ₹30,000
-                </button>
+<div class="stage">
 
-                <button type="button" class="example-query">
-                    Budget family grocery
-                </button>
+<div class="ring r2"></div>
+<div class="ring r1"></div>
 
-            </div>
+<div class="orb">
+<div class="orb-core">CM</div>
+</div>
 
-            <div id="loadingState" class="message hidden">
-                Understanding your requirement...
-            </div>
+<div class="float f1">
+<b>AI MATCH</b>
+<small>Understanding intent</small>
+</div>
 
-            <div id="errorState" class="message error hidden"></div>
+<div class="float f2">
+<b>DECISION</b>
+<small>Compare what matters</small>
+</div>
 
-        </div>
+<div class="float f3">
+<b>INSIGHT</b>
+<small>Less noise. More clarity.</small>
+</div>
 
-    </section>
+</div>
 
-    <section class="feature-grid">
+</section>
 
-        <div class="feature-card">
-            <h3>Understand</h3>
-            <p>
-                Natural-language shopping requirements can be processed
-                for AI understanding.
-            </p>
-        </div>
+<section class="section container">
 
-        <div class="feature-card">
-            <h3>Compare</h3>
-            <p>
-                Products can be compared using consistent decision criteria.
-            </p>
-        </div>
+<span class="eyebrow">How it works</span>
 
-        <div class="feature-card">
-            <h3>Decide</h3>
-            <p>
-                Recommendations are designed to be explained using verified data.
-            </p>
-        </div>
+<h2>
+From thought to <em>decision.</em>
+</h2>
 
-    </section>
+<div class="grid">
 
-</main>
+<article class="card">
+<h3>01 Describe</h3>
+<p>Write your shopping goal naturally.</p>
+</article>
 
-<footer>
-    CartMind AI — Find. Compare. Understand. Decide.
+<article class="card">
+<h3>02 Understand</h3>
+<p>Structure intent and constraints.</p>
+</article>
+
+<article class="card">
+<h3>03 Decide</h3>
+<p>Compare and move forward confidently.</p>
+</article>
+
+</div>
+
+</section>
+
+<footer class="footer">
+
+<div class="container">
+<b>CartMind AI</b>
+<span>Shop smarter. Decide better.</span>
+</div>
+
 </footer>
 
+<script src="js/config.js"></script>
+<script src="js/api.js"></script>
+<script src="js/validation.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/app.js"></script>
+
 </body>
+
 </html>

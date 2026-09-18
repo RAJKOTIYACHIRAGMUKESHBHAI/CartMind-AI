@@ -1,0 +1,1734 @@
+:root{
+  --bg:#050814;
+  --bg2:#070b17;
+  --panel:rgba(15,20,38,.72);
+  --panel2:rgba(20,27,49,.62);
+  --line:rgba(255,255,255,.10);
+  --text:#f7f8ff;
+  --muted:#9aa4bd;
+  --purple:#7c5cff;
+  --purple2:#a78bfa;
+  --cyan:#22d3ee;
+  --green:#34d399;
+  --danger:#fb7185;
+  --shadow:0 25px 80px rgba(0,0,0,.45);
+  --radius:24px;
+}
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  min-height:100vh;
+  background:
+    radial-gradient(circle at 15% 10%,rgba(124,92,255,.16),transparent 28%),
+    radial-gradient(circle at 85% 20%,rgba(34,211,238,.12),transparent 25%),
+    linear-gradient(135deg,#050814,#070b17 55%,#03050d);
+  color:var(--text);
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  overflow-x:hidden;
+  perspective:1400px;
+}
+
+body:before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  background:
+    radial-gradient(circle at 50% 40%,rgba(124,92,255,.07),transparent 40%),
+    linear-gradient(transparent 96%,rgba(34,211,238,.035));
+  z-index:-3;
+}
+
+body:after{
+  content:"";
+  position:fixed;
+  left:-10%;
+  right:-10%;
+  bottom:-38%;
+  height:75%;
+  pointer-events:none;
+  z-index:-2;
+  opacity:.24;
+  transform:perspective(700px) rotateX(64deg);
+  transform-origin:center top;
+  background-image:
+    linear-gradient(rgba(34,211,238,.22) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(124,92,255,.20) 1px,transparent 1px);
+  background-size:70px 70px;
+  mask-image:linear-gradient(to top,black,transparent);
+  animation:gridDrift 18s linear infinite;
+}
+
+@keyframes gridDrift{
+  from{background-position:0 0,0 0}
+  to{background-position:0 70px,70px 0}
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+button,
+input{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+.container{
+  width:min(1180px,92%);
+  margin:auto;
+}
+
+.navbar{
+  position:relative;
+  z-index:20;
+  border-bottom:1px solid var(--line);
+  background:rgba(5,8,20,.62);
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+}
+
+.nav{
+  min-height:78px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:24px;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  min-width:max-content;
+}
+
+.brand-logo{
+  width:44px;
+  height:44px;
+  object-fit:contain;
+  filter:
+    drop-shadow(0 0 12px rgba(124,92,255,.5))
+    drop-shadow(0 0 20px rgba(34,211,238,.15));
+  animation:logoFloat 4s ease-in-out infinite;
+}
+
+@keyframes logoFloat{
+  0%,100%{transform:translateY(0) rotateY(0)}
+  50%{transform:translateY(-3px) rotateY(10deg)}
+}
+
+.brand span{
+  display:flex;
+  flex-direction:column;
+}
+
+.brand b{
+  font-size:16px;
+  letter-spacing:.2px;
+}
+
+.brand small{
+  color:var(--muted);
+  font-size:10px;
+  margin-top:2px;
+}
+
+.navlinks{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.navlinks a{
+  padding:10px 13px;
+  border-radius:12px;
+  color:#b8c0d5;
+  font-size:14px;
+  transition:.25s ease;
+}
+
+.navlinks a:hover,
+.navlinks a.active{
+  color:#fff;
+  background:rgba(255,255,255,.06);
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.06);
+}
+
+.navbtns{
+  display:flex;
+  align-items:center;
+  gap:9px;
+}
+
+.btn{
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.045);
+  color:#fff;
+  padding:11px 16px;
+  border-radius:13px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  transition:
+    transform .25s ease,
+    box-shadow .25s ease,
+    border-color .25s ease,
+    background .25s ease;
+}
+
+.btn:hover{
+  transform:translateY(-2px);
+  border-color:rgba(167,139,250,.45);
+  box-shadow:0 10px 30px rgba(0,0,0,.25);
+}
+
+.btn.primary{
+  border:0;
+  background:linear-gradient(135deg,var(--purple),#5b4bdf 55%,#22d3ee);
+  box-shadow:
+    0 10px 30px rgba(124,92,255,.27),
+    inset 0 1px 0 rgba(255,255,255,.25);
+}
+
+.btn.primary:hover{
+  box-shadow:
+    0 15px 40px rgba(124,92,255,.42),
+    0 0 25px rgba(34,211,238,.14);
+}
+
+.menu{
+  display:none;
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.05);
+  color:white;
+  border-radius:12px;
+  padding:10px 12px;
+}
+
+.hero{
+  min-height:650px;
+  display:grid;
+  grid-template-columns:1.05fr .95fr;
+  align-items:center;
+  gap:30px;
+  position:relative;
+  isolation:isolate;
+}
+
+.hero:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  z-index:-1;
+  background:
+    radial-gradient(circle at 72% 48%,rgba(124,92,255,.16),transparent 25%),
+    radial-gradient(circle at 82% 65%,rgba(34,211,238,.10),transparent 20%);
+  animation:scenePulse 7s ease-in-out infinite;
+}
+
+@keyframes scenePulse{
+  0%,100%{opacity:.75;transform:scale(1)}
+  50%{opacity:1;transform:scale(1.04)}
+}
+
+.eyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  color:#b9aaff;
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+}
+
+.eyebrow:before{
+  content:"";
+  width:20px;
+  height:1px;
+  background:linear-gradient(90deg,var(--purple),var(--cyan));
+}
+
+.hero h1,
+.page h1{
+  font-size:clamp(42px,6vw,76px);
+  line-height:.98;
+  letter-spacing:-.055em;
+  margin:18px 0;
+}
+
+.hero h1 em,
+.page h1 em,
+.auth h1 em{
+  font-style:normal;
+  background:linear-gradient(90deg,#fff,var(--purple2),var(--cyan));
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+
+.hero p,
+.page>p,
+.wide{
+  color:var(--muted);
+  max-width:650px;
+  line-height:1.75;
+}
+
+.search{
+  margin-top:28px;
+  display:flex;
+  gap:10px;
+  padding:8px;
+  max-width:700px;
+  background:rgba(10,14,28,.78);
+  border:1px solid var(--line);
+  border-radius:18px;
+  box-shadow:
+    0 20px 60px rgba(0,0,0,.28),
+    inset 0 1px 0 rgba(255,255,255,.05);
+}
+
+.search input{
+  min-width:0;
+  flex:1;
+  border:0;
+  outline:0;
+  background:transparent;
+  color:white;
+  padding:13px 14px;
+}
+
+.search input::placeholder,
+input::placeholder{
+  color:#68738e;
+}
+
+.stage{
+  height:570px;
+  position:relative;
+  display:grid;
+  place-items:center;
+  perspective:1200px;
+  transform-style:preserve-3d;
+  overflow:visible;
+}
+
+.hero .stage:before{
+  content:"";
+  position:absolute;
+  width:430px;
+  height:430px;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(124,92,255,.28),rgba(34,211,238,.10),transparent 70%);
+  filter:blur(25px);
+  animation:orbAura 5s ease-in-out infinite;
+}
+
+.hero .stage:after{
+  content:"";
+  position:absolute;
+  bottom:75px;
+  width:330px;
+  height:60px;
+  border-radius:50%;
+  background:radial-gradient(ellipse,rgba(124,92,255,.36),rgba(34,211,238,.12),transparent 70%);
+  filter:blur(13px);
+  transform:rotateX(70deg);
+  animation:platformGlow 4s ease-in-out infinite;
+}
+
+.orb{
+  width:300px;
+  height:300px;
+  border-radius:50%;
+  position:relative;
+  display:grid;
+  place-items:center;
+  transform-style:preserve-3d;
+  background:
+    radial-gradient(circle at 32% 25%,rgba(255,255,255,.52) 0 3%,transparent 12%),
+    radial-gradient(circle at 40% 34%,#7667ff 0%,#5140c8 25%,#181848 56%,#080b19 82%);
+  box-shadow:
+    inset -30px -40px 70px rgba(0,0,0,.65),
+    inset 25px 25px 50px rgba(255,255,255,.11),
+    0 0 50px rgba(124,92,255,.25),
+    0 0 110px rgba(34,211,238,.13);
+  animation:orb3D 7s ease-in-out infinite;
+  z-index:4;
+}
+
+.orb:before{
+  content:"";
+  position:absolute;
+  inset:-14px;
+  border-radius:50%;
+  background:conic-gradient(
+    from 0deg,
+    transparent,
+    rgba(34,211,238,.9),
+    transparent 28%,
+    rgba(124,92,255,.95),
+    transparent 65%,
+    rgba(34,211,238,.8),
+    transparent
+  );
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;
+  mask-composite:exclude;
+  padding:2px;
+  filter:drop-shadow(0 0 13px rgba(124,92,255,.5));
+  animation:orbSpin 9s linear infinite;
+}
+
+.orb:after{
+  content:"";
+  position:absolute;
+  inset:12px;
+  border-radius:50%;
+  background:
+    radial-gradient(circle at 30% 20%,rgba(255,255,255,.16),transparent 25%),
+    radial-gradient(circle at 75% 80%,rgba(0,0,0,.4),transparent 45%);
+  pointer-events:none;
+}
+
+.orb-core{
+  width:96px;
+  height:96px;
+  border-radius:30px;
+  display:grid;
+  place-items:center;
+  font-size:28px;
+  font-weight:900;
+  letter-spacing:.05em;
+  color:white;
+  background:
+    linear-gradient(145deg,rgba(255,255,255,.15),rgba(255,255,255,.035));
+  border:1px solid rgba(255,255,255,.22);
+  box-shadow:
+    0 20px 50px rgba(0,0,0,.35),
+    inset 0 1px 0 rgba(255,255,255,.25),
+    0 0 35px rgba(34,211,238,.14);
+  backdrop-filter:blur(10px);
+  transform:translateZ(55px) rotateX(4deg);
+  animation:core3D 4s ease-in-out infinite;
+  z-index:3;
+}
+
+.ring{
+  position:absolute;
+  width:380px;
+  height:150px;
+  border:1px solid rgba(34,211,238,.38);
+  border-radius:50%;
+  transform-style:preserve-3d;
+  pointer-events:none;
+}
+
+.r1{
+  transform:rotateX(68deg) rotateZ(-18deg);
+  box-shadow:
+    0 0 18px rgba(34,211,238,.18),
+    inset 0 0 18px rgba(34,211,238,.10);
+  animation:orbitOne 8s linear infinite;
+}
+
+.r2{
+  width:430px;
+  height:170px;
+  transform:rotateY(62deg) rotateZ(18deg);
+  border-color:rgba(124,92,255,.35);
+  box-shadow:0 0 20px rgba(124,92,255,.16);
+  animation:orbitTwo 11s linear infinite reverse;
+}
+
+@keyframes orb3D{
+  0%,100%{transform:rotateY(-8deg) rotateX(5deg) translateY(0)}
+  50%{transform:rotateY(10deg) rotateX(-4deg) translateY(-12px)}
+}
+
+@keyframes orbAura{
+  0%,100%{transform:scale(.95);opacity:.75}
+  50%{transform:scale(1.1);opacity:1}
+}
+
+@keyframes orbSpin{
+  to{transform:rotate(360deg)}
+}
+
+@keyframes core3D{
+  0%,100%{transform:translateZ(55px) rotateX(4deg) rotateY(-5deg)}
+  50%{transform:translateZ(72px) rotateX(-3deg) rotateY(7deg)}
+}
+
+@keyframes orbitOne{
+  to{transform:rotateX(68deg) rotateZ(342deg)}
+}
+
+@keyframes orbitTwo{
+  to{transform:rotateY(62deg) rotateZ(378deg)}
+}
+
+.float{
+  position:absolute;
+  min-width:165px;
+  padding:14px 16px;
+  border-radius:17px;
+  background:rgba(9,13,28,.72);
+  border:1px solid rgba(255,255,255,.10);
+  backdrop-filter:blur(15px);
+  box-shadow:0 20px 50px rgba(0,0,0,.35);
+  z-index:8;
+  transform-style:preserve-3d;
+}
+
+.float b{
+  display:block;
+  font-size:11px;
+  letter-spacing:.13em;
+}
+
+.float small{
+  display:block;
+  color:var(--muted);
+  margin-top:5px;
+  font-size:11px;
+}
+
+.f1{
+  top:115px;
+  left:2%;
+  animation:cardFloatOne 5s ease-in-out infinite;
+}
+
+.f2{
+  right:0;
+  top:235px;
+  animation:cardFloatTwo 6s ease-in-out infinite;
+}
+
+.f3{
+  bottom:95px;
+  left:12%;
+  animation:cardFloatThree 5.5s ease-in-out infinite;
+}
+
+@keyframes cardFloatOne{
+  0%,100%{transform:translate3d(0,0,35px) rotateY(8deg)}
+  50%{transform:translate3d(0,-13px,55px) rotateY(-4deg)}
+}
+
+@keyframes cardFloatTwo{
+  0%,100%{transform:translate3d(0,0,25px) rotateY(-8deg)}
+  50%{transform:translate3d(0,-15px,45px) rotateY(4deg)}
+}
+
+@keyframes cardFloatThree{
+  0%,100%{transform:translate3d(0,0,20px) rotateX(3deg)}
+  50%{transform:translate3d(0,-11px,45px) rotateX(-3deg)}
+}
+
+.section{
+  padding:90px 0;
+}
+
+.section h2{
+  font-size:clamp(32px,5vw,54px);
+  margin:15px 0 35px;
+  letter-spacing:-.04em;
+}
+
+.section h2 em{
+  font-style:normal;
+  color:var(--purple2);
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+}
+
+.card{
+  position:relative;
+  padding:25px;
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  background:
+    linear-gradient(145deg,rgba(255,255,255,.065),rgba(255,255,255,.025));
+  backdrop-filter:blur(18px);
+  box-shadow:var(--shadow);
+  overflow:hidden;
+}
+
+.card:before{
+  content:"";
+  position:absolute;
+  width:130px;
+  height:130px;
+  top:-80px;
+  right:-70px;
+  background:radial-gradient(circle,rgba(124,92,255,.22),transparent 70%);
+  pointer-events:none;
+}
+
+.card h3{
+  margin-bottom:9px;
+}
+
+.card p{
+  color:var(--muted);
+  line-height:1.65;
+}
+
+.page{
+  padding-top:80px;
+  padding-bottom:100px;
+  min-height:calc(100vh - 150px);
+}
+
+.page h1{
+  font-size:clamp(40px,6vw,68px);
+}
+
+.page .search{
+  margin-top:25px;
+}
+
+.product-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+}
+
+.product{
+  min-height:250px;
+}
+
+.product-art{
+  height:120px;
+  display:grid;
+  place-items:center;
+  border-radius:17px;
+  margin-bottom:18px;
+  background:
+    radial-gradient(circle at 50% 35%,rgba(124,92,255,.28),transparent 50%),
+    linear-gradient(145deg,#11172c,#080b18);
+  color:#a99cff;
+  font-weight:900;
+  font-size:30px;
+}
+
+.empty{
+  text-align:center;
+  padding:50px 25px;
+}
+
+.compare-inputs{
+  display:grid;
+  grid-template-columns:1fr auto 1fr;
+  align-items:center;
+  gap:18px;
+  margin-top:35px;
+}
+
+.compare-input small{
+  display:block;
+  color:var(--muted);
+  font-size:10px;
+  letter-spacing:.14em;
+  margin-bottom:10px;
+}
+
+.compare-input input{
+  width:100%;
+  border:1px solid var(--line);
+  background:rgba(0,0,0,.15);
+  color:white;
+  padding:13px;
+  border-radius:12px;
+  outline:none;
+}
+
+.compare-input input:focus{
+  border-color:rgba(124,92,255,.6);
+  box-shadow:0 0 0 3px rgba(124,92,255,.10);
+}
+
+.vs{
+  color:var(--purple2);
+  font-size:13px;
+  letter-spacing:.12em;
+}
+
+.workspace{
+  margin-top:28px;
+  display:grid;
+  gap:18px;
+}
+
+.hidden{
+  display:none!important;
+}
+
+.tablebox{
+  overflow:auto;
+  border:1px solid var(--line);
+  border-radius:20px;
+  background:rgba(8,11,24,.72);
+  box-shadow:var(--shadow);
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  min-width:520px;
+}
+
+th,
+td{
+  padding:16px;
+  text-align:left;
+  border-bottom:1px solid var(--line);
+}
+
+th{
+  color:#c7bfff;
+  background:rgba(124,92,255,.07);
+}
+
+td{
+  color:var(--muted);
+}
+
+.chatbox{
+  max-width:850px;
+  margin:35px auto;
+  border:1px solid var(--line);
+  border-radius:25px;
+  overflow:hidden;
+  background:rgba(8,12,25,.72);
+  box-shadow:var(--shadow);
+  backdrop-filter:blur(18px);
+}
+
+.messages{
+  min-height:400px;
+  padding:25px;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+.msg{
+  max-width:78%;
+  padding:13px 16px;
+  border-radius:16px;
+  line-height:1.55;
+}
+
+.msg.ai{
+  align-self:flex-start;
+  background:rgba(255,255,255,.055);
+  border:1px solid var(--line);
+}
+
+.msg.user{
+  align-self:flex-end;
+  background:linear-gradient(135deg,rgba(124,92,255,.8),rgba(91,75,223,.75));
+}
+
+.chat{
+  display:flex;
+  gap:10px;
+  padding:13px;
+  border-top:1px solid var(--line);
+}
+
+.chat input{
+  flex:1;
+  min-width:0;
+  border:0;
+  outline:0;
+  background:transparent;
+  color:white;
+  padding:12px;
+}
+
+.authwrap{
+  min-height:calc(100vh - 155px);
+  display:grid;
+  place-items:center;
+  padding:70px 20px;
+  position:relative;
+  z-index:2;
+}
+
+.auth{
+  width:min(470px,100%);
+  padding:38px;
+  border-radius:30px;
+  border:1px solid rgba(255,255,255,.11);
+  background:
+    linear-gradient(145deg,rgba(20,26,49,.82),rgba(7,10,21,.82));
+  backdrop-filter:blur(24px);
+  box-shadow:
+    0 40px 100px rgba(0,0,0,.55),
+    inset 0 1px 0 rgba(255,255,255,.08);
+  position:relative;
+  overflow:hidden;
+}
+
+.auth:before{
+  content:"";
+  position:absolute;
+  width:250px;
+  height:250px;
+  top:-160px;
+  right:-110px;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(124,92,255,.35),transparent 70%);
+}
+
+.auth-mark{
+  width:72px;
+  height:72px;
+  display:grid;
+  place-items:center;
+  border-radius:22px;
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.10);
+  margin-bottom:25px;
+  box-shadow:0 15px 40px rgba(124,92,255,.16);
+  transform:rotate(-3deg);
+}
+
+.auth-mark img{
+  width:55px;
+  height:55px;
+  object-fit:contain;
+}
+
+.auth h1{
+  font-size:34px;
+  letter-spacing:-.04em;
+  margin:12px 0;
+}
+
+.auth>p{
+  color:var(--muted);
+  line-height:1.65;
+}
+
+.auth form{
+  margin-top:25px;
+}
+
+.auth label{
+  display:block;
+  color:#dbe1f1;
+  font-size:13px;
+  margin-bottom:16px;
+}
+
+.auth label input{
+  display:block;
+  width:100%;
+  margin-top:8px;
+  padding:13px 14px;
+  border-radius:13px;
+  border:1px solid var(--line);
+  outline:none;
+  background:rgba(0,0,0,.18);
+  color:#fff;
+  transition:.25s;
+}
+
+.auth label input:focus{
+  border-color:rgba(124,92,255,.65);
+  box-shadow:0 0 0 4px rgba(124,92,255,.10);
+}
+
+.rules{
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+  margin:-4px 0 17px;
+}
+
+.rules span{
+  padding:6px 9px;
+  border-radius:9px;
+  background:rgba(255,255,255,.05);
+  color:#6f7891;
+  font-size:10px;
+  border:1px solid var(--line);
+}
+
+.rules span.ok{
+  color:#6ee7b7;
+  border-color:rgba(52,211,153,.3);
+  background:rgba(52,211,153,.08);
+}
+
+.notice{
+  margin-top:14px;
+  padding:11px 13px;
+  border-radius:11px;
+  font-size:12px;
+  line-height:1.5;
+}
+
+.okmsg{
+  color:#6ee7b7;
+  background:rgba(52,211,153,.08);
+  border:1px solid rgba(52,211,153,.2);
+}
+
+.errmsg{
+  color:#fda4af;
+  background:rgba(251,113,133,.08);
+  border:1px solid rgba(251,113,133,.2);
+}
+
+.auth-orb{
+  position:fixed;
+  border-radius:50%;
+  pointer-events:none;
+  filter:blur(2px);
+  z-index:0;
+}
+
+.auth-orb.one{
+  width:360px;
+  height:360px;
+  left:-170px;
+  top:160px;
+  background:radial-gradient(circle,rgba(124,92,255,.16),transparent 68%);
+  animation:authOrbOne 8s ease-in-out infinite;
+}
+
+.auth-orb.two{
+  width:320px;
+  height:320px;
+  right:-150px;
+  bottom:100px;
+  background:radial-gradient(circle,rgba(34,211,238,.13),transparent 68%);
+  animation:authOrbTwo 9s ease-in-out infinite;
+}
+
+@keyframes authOrbOne{
+  0%,100%{transform:translate3d(0,0,0)}
+  50%{transform:translate3d(40px,-25px,0)}
+}
+
+@keyframes authOrbTwo{
+  0%,100%{transform:translate3d(0,0,0)}
+  50%{transform:translate3d(-30px,20px,0)}
+}
+
+.footer{
+  border-top:1px solid var(--line);
+  background:rgba(4,7,16,.6);
+  color:var(--muted);
+}
+
+.footer .container{
+  min-height:80px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+}
+
+.footer b{
+  color:#fff;
+}
+
+@media(max-width:900px){
+  .navlinks{
+    display:none;
+  }
+
+  .menu{
+    display:block;
+  }
+
+  .hero{
+    grid-template-columns:1fr;
+    padding-top:60px;
+  }
+
+  .stage{
+    min-height:500px;
+    height:500px;
+  }
+
+  .grid,
+  .product-grid{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .hero h1{
+    font-size:clamp(44px,10vw,70px);
+  }
+}
+
+@media(max-width:650px){
+  .container{
+    width:min(94%,1180px);
+  }
+
+  .nav{
+    min-height:70px;
+  }
+
+  .brand small{
+    display:none;
+  }
+
+  .navbtns .btn:first-child{
+    display:none;
+  }
+
+  .hero{
+    min-height:auto;
+    padding-top:55px;
+  }
+
+  .hero h1{
+    font-size:48px;
+  }
+
+  .hero .search{
+    flex-direction:column;
+  }
+
+  .hero .search .btn{
+    width:100%;
+  }
+
+  .stage{
+    height:410px;
+    min-height:410px;
+    transform:scale(.82);
+    margin:-25px -50px;
+  }
+
+  .orb{
+    width:260px;
+    height:260px;
+  }
+
+  .ring{
+    width:340px;
+  }
+
+  .f1{
+    top:55px;
+    left:0;
+  }
+
+  .f2{
+    right:-10px;
+    top:190px;
+  }
+
+  .f3{
+    bottom:55px;
+    left:5%;
+  }
+
+  .float{
+    min-width:145px;
+    padding:11px 12px;
+  }
+
+  .grid,
+  .product-grid{
+    grid-template-columns:1fr;
+  }
+
+  .compare-inputs{
+    grid-template-columns:1fr;
+  }
+
+  .vs{
+    text-align:center;
+  }
+
+  .page{
+    padding-top:55px;
+  }
+
+  .auth{
+    padding:28px 22px;
+  }
+
+  .footer .container{
+    flex-direction:column;
+    justify-content:center;
+    padding:18px 0;
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+  *,
+  *:before,
+  *:after{
+    animation-duration:.01ms!important;
+    animation-iteration-count:1!important;
+    scroll-behavior:auto!important;
+  }
+}
+/* =========================================
+   CARTMIND AI - PREMIUM 3D LOGO
+   ========================================= */
+
+.cm-3d-logo {
+  position: relative;
+  width: 52px;
+  height: 52px;
+  display: grid;
+  place-items: center;
+  perspective: 700px;
+  flex-shrink: 0;
+}
+
+/* 3D cube */
+
+.cm-3d-cube {
+  position: relative;
+  width: 32px;
+  height: 32px;
+  transform-style: preserve-3d;
+  transform: rotateX(-18deg) rotateY(35deg);
+  animation: cmCubeFloat 4s ease-in-out infinite;
+  z-index: 5;
+}
+
+.cube-face {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  border: 1px solid rgba(255,255,255,.3);
+  border-radius: 7px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #7c5cff,
+      #4f46e5 50%,
+      #22d3ee
+    );
+
+  box-shadow:
+    inset 0 1px 2px rgba(255,255,255,.3);
+}
+
+.cube-face.front {
+  display: grid;
+  place-items: center;
+
+  color: #fff;
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 950;
+
+  text-shadow:
+    0 2px 7px rgba(0,0,0,.5);
+
+  transform: translateZ(16px);
+}
+
+.cube-face.back {
+  transform: rotateY(180deg) translateZ(16px);
+}
+
+.cube-face.right {
+  transform:
+    rotateY(90deg)
+    translateZ(16px);
+
+  background:
+    linear-gradient(
+      180deg,
+      #22d3ee,
+      #2563eb
+    );
+}
+
+.cube-face.left {
+  transform:
+    rotateY(-90deg)
+    translateZ(16px);
+
+  background:
+    linear-gradient(
+      180deg,
+      #7c5cff,
+      #4338ca
+    );
+}
+
+.cube-face.top {
+  transform:
+    rotateX(90deg)
+    translateZ(16px);
+
+  background:
+    linear-gradient(
+      135deg,
+      #a78bfa,
+      #22d3ee
+    );
+}
+
+.cube-face.bottom {
+  transform:
+    rotateX(-90deg)
+    translateZ(16px);
+
+  background:
+    #312e81;
+}
+
+/* Orbit rings */
+
+.cm-3d-orbit {
+  position: absolute;
+  width: 48px;
+  height: 17px;
+
+  border-radius: 50%;
+  border: 1.5px solid rgba(34,211,238,.8);
+
+  box-shadow:
+    0 0 9px rgba(34,211,238,.45);
+
+  z-index: 3;
+  pointer-events: none;
+}
+
+.orbit-a {
+  transform:
+    rotateX(65deg)
+    rotateZ(-20deg);
+
+  animation:
+    cmOrbitA 4s linear infinite;
+}
+
+.orbit-b {
+  width: 43px;
+  height: 15px;
+
+  border-color:
+    rgba(124,92,255,.85);
+
+  transform:
+    rotateY(65deg)
+    rotateZ(20deg);
+
+  animation:
+    cmOrbitB 3.5s linear infinite;
+}
+
+/* Glow */
+
+.cm-3d-light {
+  position: absolute;
+  width: 42px;
+  height: 42px;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(124,92,255,.45),
+      rgba(34,211,238,.12),
+      transparent 70%
+    );
+
+  filter: blur(7px);
+  z-index: 1;
+
+  animation:
+    cmLogoGlow 3s ease-in-out infinite;
+}
+
+/* Animations */
+
+@keyframes cmCubeFloat {
+
+  0%, 100% {
+    transform:
+      translateY(0)
+      rotateX(-18deg)
+      rotateY(35deg);
+  }
+
+  50% {
+    transform:
+      translateY(-4px)
+      rotateX(-24deg)
+      rotateY(70deg);
+  }
+}
+
+@keyframes cmOrbitA {
+
+  from {
+    transform:
+      rotateX(65deg)
+      rotateZ(0deg);
+  }
+
+  to {
+    transform:
+      rotateX(65deg)
+      rotateZ(360deg);
+  }
+}
+
+@keyframes cmOrbitB {
+
+  from {
+    transform:
+      rotateY(65deg)
+      rotateZ(0deg);
+  }
+
+  to {
+    transform:
+      rotateY(65deg)
+      rotateZ(-360deg);
+  }
+}
+
+@keyframes cmLogoGlow {
+
+  0%, 100% {
+    opacity: .5;
+    transform: scale(.9);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .cm-3d-cube,
+  .cm-3d-orbit,
+  .cm-3d-light {
+    animation: none;
+  }
+}
+/* =========================================
+   CARTMIND AI - FULL SCREEN 3D BACKGROUND
+   ========================================= */
+
+body {
+    position: relative;
+    isolation: isolate;
+    background: #03050d;
+    overflow-x: hidden;
+}
+
+/* Full screen 3D space */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            circle at 15% 25%,
+            rgba(124, 92, 255, 0.35),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 85% 20%,
+            rgba(34, 211, 238, 0.25),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 50% 90%,
+            rgba(124, 92, 255, 0.22),
+            transparent 35%
+        ),
+        #03050d;
+
+    animation: cmBackgroundMove 9s ease-in-out infinite alternate;
+}
+
+/* Large perspective floor */
+body::after {
+    content: "";
+    position: fixed;
+
+    left: -50%;
+    width: 200%;
+    height: 100%;
+
+    bottom: -35%;
+
+    z-index: -1;
+    pointer-events: none;
+
+    background-image:
+        linear-gradient(
+            rgba(34, 211, 238, 0.32) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(124, 92, 255, 0.30) 1px,
+            transparent 1px
+        );
+
+    background-size: 70px 70px;
+
+    transform:
+        perspective(600px)
+        rotateX(62deg);
+
+    transform-origin: center top;
+
+    mask-image: linear-gradient(
+        to top,
+        black 0%,
+        black 45%,
+        transparent 100%
+    );
+
+    animation: cm3DGridMove 4s linear infinite;
+}
+
+/* Background movement */
+@keyframes cmBackgroundMove {
+
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.08) translate3d(2%, -1%, 0);
+    }
+
+    100% {
+        transform: scale(1.04) translate3d(-2%, 2%, 0);
+    }
+}
+
+/* Moving 3D grid */
+@keyframes cm3DGridMove {
+
+    from {
+        background-position:
+            0 0,
+            0 0;
+    }
+
+    to {
+        background-position:
+            0 70px,
+            70px 0;
+    }
+}
+/* =========================================
+   CARTMIND - 3D ANIMATED COLOR BACKGROUND
+   ========================================= */
+
+body::before {
+    background:
+        radial-gradient(
+            circle at 20% 30%,
+            rgba(124, 92, 255, 0.45),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 80% 20%,
+            rgba(34, 211, 238, 0.35),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 50% 80%,
+            rgba(236, 72, 153, 0.30),
+            transparent 35%
+        ),
+        #03050d;
+
+    animation: cmColorShift 8s ease-in-out infinite alternate;
+}
+
+body::after {
+    animation:
+        cm3DGridMove 4s linear infinite,
+        cmGridColor 6s ease-in-out infinite alternate;
+}
+
+/* 3D lighting movement */
+@keyframes cmColorShift {
+
+    0% {
+        filter: hue-rotate(0deg);
+        transform: scale(1) translate3d(0, 0, 0);
+    }
+
+    50% {
+        filter: hue-rotate(55deg);
+        transform: scale(1.08) translate3d(2%, -1%, 0);
+    }
+
+    100% {
+        filter: hue-rotate(120deg);
+        transform: scale(1.04) translate3d(-2%, 2%, 0);
+    }
+}
+
+/* Grid color changing */
+@keyframes cmGridColor {
+
+    0% {
+        filter: hue-rotate(0deg);
+        opacity: 0.65;
+    }
+
+    50% {
+        filter: hue-rotate(90deg);
+        opacity: 0.9;
+    }
+
+    100% {
+        filter: hue-rotate(180deg);
+        opacity: 0.7;
+    }
+}
+/* =========================================
+   CARTMIND AI - 3D ORB COLOR ANIMATION
+   ========================================= */
+
+.orb {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle at 35% 30%,
+            #ffffff 0%,
+            #22d3ee 12%,
+            #7c5cff 40%,
+            #ec4899 68%,
+            #050814 100%
+        );
+
+    box-shadow:
+        0 0 30px rgba(124, 92, 255, .8),
+        0 0 70px rgba(34, 211, 238, .5),
+        inset -30px -30px 60px rgba(0, 0, 0, .65);
+
+    transform-style: preserve-3d;
+
+    animation:
+        orb3DColor 7s ease-in-out infinite,
+        orbFloat 4s ease-in-out infinite;
+}
+
+/* Rotating neon ring */
+.orb::before {
+    content: "";
+    position: absolute;
+    inset: -12px;
+
+    border-radius: 50%;
+
+    background: conic-gradient(
+        #22d3ee,
+        #7c5cff,
+        #ec4899,
+        #22d3ee
+    );
+
+    filter: blur(2px);
+
+    z-index: -1;
+
+    animation: orbRingRotate 3s linear infinite;
+}
+
+/* Inner glow */
+.orb::after {
+    content: "";
+    position: absolute;
+    inset: 25px;
+
+    border-radius: 50%;
+
+    background: radial-gradient(
+        circle at 35% 30%,
+        rgba(255,255,255,.8),
+        transparent 20%,
+        rgba(124,92,255,.25) 55%,
+        transparent 75%
+    );
+
+    mix-blend-mode: screen;
+
+    animation: orbGlow 3s ease-in-out infinite alternate;
+}
+
+
+/* =========================================
+   3D ROTATION + COLOR CHANGE
+   ========================================= */
+
+@keyframes orb3DColor {
+
+    0% {
+        transform:
+            rotateX(0deg)
+            rotateY(0deg)
+            rotateZ(0deg);
+
+        filter: hue-rotate(0deg);
+    }
+
+    25% {
+        transform:
+            rotateX(15deg)
+            rotateY(90deg)
+            rotateZ(5deg);
+
+        filter: hue-rotate(45deg);
+    }
+
+    50% {
+        transform:
+            rotateX(-10deg)
+            rotateY(180deg)
+            rotateZ(-5deg);
+
+        filter: hue-rotate(100deg);
+    }
+
+    75% {
+        transform:
+            rotateX(12deg)
+            rotateY(270deg)
+            rotateZ(5deg);
+
+        filter: hue-rotate(160deg);
+    }
+
+    100% {
+        transform:
+            rotateX(0deg)
+            rotateY(360deg)
+            rotateZ(0deg);
+
+        filter: hue-rotate(220deg);
+    }
+}
+
+
+/* Floating movement */
+@keyframes orbFloat {
+
+    0%, 100% {
+        margin-top: 0;
+    }
+
+    50% {
+        margin-top: -18px;
+    }
+}
+
+
+/* Ring rotation */
+@keyframes orbRingRotate {
+
+    from {
+        transform: rotate(0deg) scale(1);
+    }
+
+    to {
+        transform: rotate(360deg) scale(1.05);
+    }
+}
+
+
+/* Glow pulse */
+@keyframes orbGlow {
+
+    from {
+        opacity: .45;
+        transform: scale(.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1.08);
+    }
+}
+/* =========================================
+   ONLY TOP NAVBAR LOGO - 3D
+   ========================================= */
+
+.navbar-3d-logo {
+    width: 52px;
+    height: 52px;
+    object-fit: contain;
+    display: block;
+    border-radius: 12px;
+
+    transform-style: preserve-3d;
+
+    filter:
+        drop-shadow(0 0 8px rgba(34, 211, 238, .8))
+        drop-shadow(0 0 18px rgba(124, 92, 255, .7));
+
+    animation: navbarLogo3D 5s ease-in-out infinite;
+}
+
+@keyframes navbarLogo3D {
+    0%, 100% {
+        transform:
+            perspective(600px)
+            rotateY(-10deg)
+            rotateX(4deg)
+            translateY(0);
+    }
+
+    50% {
+        transform:
+            perspective(600px)
+            rotateY(10deg)
+            rotateX(-4deg)
+            translateY(-4px);
+    }
+}

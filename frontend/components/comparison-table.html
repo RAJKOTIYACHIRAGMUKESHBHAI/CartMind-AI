@@ -1,0 +1,68 @@
+<!-- =========================================
+     CartMind AI - Comparison Table
+     ========================================= -->
+
+<section
+  class="comparison-table"
+  id="comparisonTable"
+  aria-label="Product comparison"
+>
+  <div class="comparison-table-header">
+    <div>
+      <span class="eyebrow">Decision Lab</span>
+      <h2>Side-by-Side Comparison</h2>
+      <p>Compare the options using the available API data.</p>
+    </div>
+
+    <span class="comparison-status" data-field="status">
+      Comparison
+    </span>
+  </div>
+
+  <div class="comparison-scroll">
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">Criteria</th>
+          <th scope="col" id="headA">Option A</th>
+          <th scope="col" id="headB">Option B</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <th scope="row">Name</th>
+          <td data-field="optionA.name"></td>
+          <td data-field="optionB.name"></td>
+        </tr>
+
+        <tr>
+          <th scope="row">Price</th>
+          <td data-field="optionA.price"></td>
+          <td data-field="optionB.price"></td>
+        </tr>
+
+        <tr>
+          <th scope="row">Rating</th>
+          <td data-field="optionA.rating"></td>
+          <td data-field="optionB.rating"></td>
+        </tr>
+
+        <tr>
+          <th scope="row">Key Features</th>
+          <td data-field="optionA.features"></td>
+          <td data-field="optionB.features"></td>
+        </tr>
+
+        <tr>
+          <th scope="row">Match</th>
+          <td data-field="optionA.match"></td>
+          <td data-field="optionB.match"></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="comparison-insight" data-field="insight">
+  </div>
+</section>

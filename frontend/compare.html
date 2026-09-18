@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Compare | CartMind AI</title>
+  <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+
+<header class="navbar">
+  <div class="container nav">
+
+    <a class="brand" href="index.html">
+      <img
+        class="brand-logo"
+        src="assets/logo/cartmind-main-logo(1).png"
+        alt="CartMind AI logo"
+      >
+
+      <span>
+        <b>CartMind AI</b>
+        <small>AI shopping intelligence</small>
+      </span>
+    </a>
+
+    <nav class="navlinks">
+      <a href="index.html">Home</a>
+      <a href="products.html">Products</a>
+      <a class="active" href="compare.html">Compare</a>
+      <a href="assistant.html">AI Assistant</a>
+    </nav>
+
+    <div class="navbtns">
+      <a class="btn" href="login.html">Login</a>
+      <a class="btn primary" href="register.html">Register</a>
+      <button class="menu">☰</button>
+    </div>
+
+  </div>
+</header>
+
+
+<main class="page container">
+
+  <span class="eyebrow">Decision Lab</span>
+
+  <h1>
+    Compare with
+    <em>clarity.</em>
+  </h1>
+
+  <p>
+    Enter two options to prepare a neutral comparison workspace.
+    Real comparison values can be connected to documented backend data.
+  </p>
+
+
+  <section class="compare-inputs">
+
+    <div class="card compare-input">
+
+      <small>OPTION A</small>
+
+      <input
+        id="compareA"
+        type="text"
+        placeholder="First product"
+        autocomplete="off"
+      >
+
+    </div>
+
+
+    <b class="vs">VS</b>
+
+
+    <div class="card compare-input">
+
+      <small>OPTION B</small>
+
+      <input
+        id="compareB"
+        type="text"
+        placeholder="Second product"
+        autocomplete="off"
+      >
+
+    </div>
+
+  </section>
+
+
+  <button
+    id="compareButton"
+    class="btn primary"
+    style="margin-top:18px"
+    type="button"
+  >
+    Build Comparison →
+  </button>
+
+
+  <section
+    id="workspace"
+    class="workspace hidden"
+    style="display:none"
+  >
+
+    <article class="card">
+
+      <span class="eyebrow">
+        Decision Insight
+      </span>
+
+      <h2 style="margin:15px 0 8px">
+        Comparison ready
+      </h2>
+
+      <p>
+        The comparison workspace is ready.
+        Connect documented product fields for live values.
+      </p>
+
+    </article>
+
+
+    <div class="tablebox">
+
+      <table>
+
+        <thead>
+          <tr>
+            <th>Criteria</th>
+            <th id="headA">A</th>
+            <th id="headB">B</th>
+          </tr>
+        </thead>
+
+        <tbody>
+
+          <tr>
+            <td>Price</td>
+            <td>—</td>
+            <td>—</td>
+          </tr>
+
+          <tr>
+            <td>Rating</td>
+            <td>—</td>
+            <td>—</td>
+          </tr>
+
+          <tr>
+            <td>Availability</td>
+            <td>—</td>
+            <td>—</td>
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </section>
+
+</main>
+
+
+<footer class="footer">
+
+  <div class="container">
+
+    <b>CartMind AI</b>
+
+    <span>
+      Shop smarter. Decide better.
+    </span>
+
+  </div>
+
+</footer>
+
+
+<script src="js/config.js"></script>
+<script src="js/api.js"></script>
+<script src="js/validation.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/app.js"></script>
+
+</body>
+</html>
