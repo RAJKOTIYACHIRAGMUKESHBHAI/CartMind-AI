@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>AI Assistant | CartMind AI</title>
+  <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+
+<header class="navbar">
+  <div class="container nav">
+
+    <a class="brand" href="index.html">
+      <img
+        class="brand-logo"
+        src="assets/logo/cartmind-main-logo(1).png"
+        alt="CartMind AI logo"
+      >
+
+      <span>
+        <b>CartMind AI</b>
+        <small>AI shopping intelligence</small>
+      </span>
+    </a>
+
+    <nav class="navlinks">
+      <a href="index.html">Home</a>
+      <a href="products.html">Products</a>
+      <a href="compare.html">Compare</a>
+      <a class="active" href="assistant.html">AI Assistant</a>
+    </nav>
+
+    <div class="navbtns">
+      <a class="btn" href="login.html">Login</a>
+      <a class="btn primary" href="register.html">Register</a>
+      <button class="menu">☰</button>
+    </div>
+
+  </div>
+</header>
+
+
+<main class="page container">
+
+  <div style="text-align:center">
+
+    <span class="eyebrow">
+      AI Workspace
+    </span>
+
+    <h1>
+      Ask. Understand.
+      <em>Decide.</em>
+    </h1>
+
+    <p style="margin:auto">
+      Tell CartMind AI what you are looking for
+      using natural language.
+    </p>
+
+  </div>
+
+
+  <section class="chatbox">
+
+    <div class="messages" id="messages">
+
+      <div class="msg ai">
+        Hi! Tell me what you are shopping for.
+      </div>
+
+    </div>
+
+
+    <form id="assistantForm" class="chat">
+
+      <input
+        id="assistantInput"
+        type="text"
+        placeholder="Ask CartMind AI…"
+        autocomplete="off"
+        required
+      >
+
+      <button
+        class="btn primary"
+        type="submit"
+      >
+        Send →
+      </button>
+
+    </form>
+
+  </section>
+
+
+  <section class="grid">
+
+    <article class="card">
+      <span class="eyebrow">01</span>
+      <h3>Understand</h3>
+      <p>
+        Structure your shopping intent
+        from natural language.
+      </p>
+    </article>
+
+
+    <article class="card">
+      <span class="eyebrow">02</span>
+      <h3>Compare</h3>
+      <p>
+        Keep the criteria that matter
+        visible and organized.
+      </p>
+    </article>
+
+
+    <article class="card">
+      <span class="eyebrow">03</span>
+      <h3>Decide</h3>
+      <p>
+        Reduce information overload
+        and make clearer choices.
+      </p>
+    </article>
+
+  </section>
+
+</main>
+
+
+<footer class="footer">
+
+  <div class="container">
+
+    <b>CartMind AI</b>
+
+    <span>
+      Shop smarter. Decide better.
+    </span>
+
+  </div>
+
+</footer>
+
+
+<script src="js/config.js"></script>
+<script src="js/api.js"></script>
+<script src="js/validation.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/app.js"></script>
+
+</body>
+</html>

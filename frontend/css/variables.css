@@ -1,24 +1,112 @@
+/* =========================================
+   CartMind AI - Global Design Variables
+   ========================================= */
+
 :root {
-    --background: #f7f8fc;
-    --surface: #ffffff;
 
-    --text: #111827;
-    --muted: #6b7280;
+  /* ---------- Brand Colors ---------- */
+  --cm-bg: #050814;
+  --cm-bg-soft: #070b17;
+  --cm-surface: rgba(255, 255, 255, 0.055);
+  --cm-surface-strong: rgba(255, 255, 255, 0.09);
 
-    --border: #e5e7eb;
+  --cm-purple: #7c5cff;
+  --cm-purple-light: #a78bfa;
+  --cm-cyan: #22d3ee;
+  --cm-blue: #38bdf8;
 
-    --primary: #111827;
-    --primary-hover: #1f2937;
+  /* ---------- Text ---------- */
+  --cm-text: #f8fafc;
+  --cm-text-soft: #cbd5e1;
+  --cm-muted: #94a3b8;
+  --cm-dark-muted: #64748b;
 
-    --success: #16a34a;
-    --danger: #dc2626;
+  /* ---------- Borders ---------- */
+  --cm-border: rgba(255, 255, 255, 0.11);
+  --cm-border-light: rgba(255, 255, 255, 0.17);
 
-    --radius-small: 10px;
-    --radius-medium: 16px;
-    --radius-large: 24px;
+  /* ---------- Gradients ---------- */
+  --cm-gradient: linear-gradient(
+    135deg,
+    var(--cm-purple),
+    var(--cm-cyan)
+  );
 
-    --shadow-small: 0 4px 14px rgba(0, 0, 0, 0.06);
-    --shadow-medium: 0 16px 40px rgba(0, 0, 0, 0.08);
+  --cm-gradient-soft: linear-gradient(
+    135deg,
+    rgba(124, 92, 255, 0.18),
+    rgba(34, 211, 238, 0.10)
+  );
 
-    --max-width: 1180px;
+  --cm-bg-gradient: linear-gradient(
+    135deg,
+    #02040c 0%,
+    #070b1c 50%,
+    #030510 100%
+  );
+
+  /* ---------- Shadows ---------- */
+  --cm-shadow: 0 25px 70px rgba(0, 0, 0, 0.45);
+
+  --cm-shadow-purple:
+    0 0 45px rgba(124, 92, 255, 0.22);
+
+  --cm-shadow-cyan:
+    0 0 45px rgba(34, 211, 238, 0.18);
+
+  /* ---------- Glass Effect ---------- */
+  --cm-glass:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.085),
+      rgba(255, 255, 255, 0.025)
+    );
+
+  --cm-glass-blur: blur(18px);
+
+  /* ---------- Radius ---------- */
+  --cm-radius-sm: 10px;
+  --cm-radius-md: 16px;
+  --cm-radius-lg: 24px;
+  --cm-radius-xl: 32px;
+  --cm-radius-pill: 999px;
+
+  /* ---------- Spacing ---------- */
+  --cm-space-1: 6px;
+  --cm-space-2: 10px;
+  --cm-space-3: 14px;
+  --cm-space-4: 18px;
+  --cm-space-5: 24px;
+  --cm-space-6: 32px;
+  --cm-space-7: 48px;
+  --cm-space-8: 72px;
+
+  /* ---------- Typography ---------- */
+  --cm-font:
+    Inter,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
+  --cm-heading-weight: 800;
+  --cm-body-weight: 400;
+
+  /* ---------- Transitions ---------- */
+  --cm-transition-fast: 0.2s ease;
+  --cm-transition: 0.35s ease;
+  --cm-transition-slow: 0.6s ease;
+
+  /* ---------- Layout ---------- */
+  --cm-container: 1180px;
+  --cm-navbar-height: 78px;
+
+  /* ---------- Z-Index ---------- */
+  --cm-z-base: 1;
+  --cm-z-content: 10;
+  --cm-z-navbar: 100;
+  --cm-z-modal: 1000;
+
 }
