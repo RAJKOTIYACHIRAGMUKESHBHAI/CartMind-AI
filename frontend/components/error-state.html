@@ -1,0 +1,46 @@
+<!-- =========================================
+     CartMind AI - Error State
+     ========================================= -->
+
+<section
+  class="error-state"
+  id="errorState"
+  role="alert"
+  hidden
+>
+  <div class="error-state-icon">
+    !
+  </div>
+
+  <div class="error-state-content">
+    <span class="eyebrow">Something went wrong</span>
+
+    <h2 id="errorStateTitle">
+      We couldn't complete that request.
+    </h2>
+
+    <p id="errorStateMessage">
+      Please try again. If the problem continues, check the
+      connection to the AI search service.
+    </p>
+
+    <div class="error-state-actions">
+      <button
+        type="button"
+        class="btn primary"
+        id="errorRetry"
+      >
+        Try Again
+      </button>
+
+      <button
+        type="button"
+        class="btn"
+        id="errorDismiss"
+      >
+        Dismiss
+      </button>
+    </div>
+  </div>
+
+</section>

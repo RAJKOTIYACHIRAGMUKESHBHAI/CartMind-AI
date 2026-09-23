@@ -1,0 +1,923 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Details | CartMind AI</title>
+  <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+
+<header class="navbar">
+  <div class="container nav">
+
+    <a class="brand" href="index.html">
+      <img
+        class="brand-logo"
+        src="assets/cartmind-3d-logo-icon.png"
+        alt="CartMind AI logo"
+      >
+
+      <span>
+        <b>CartMind AI</b>
+        <small>AI shopping intelligence</small>
+      </span>
+    </a>
+
+    <nav class="navlinks">
+      <a href="index.html">Home</a>
+      <a href="products.html">Products</a>
+      <a href="compare.html">Compare</a>
+      <a href="assistant.html">AI Assistant</a>
+    </nav>
+
+    <div class="navbtns">
+      <a class="btn" href="login.html">Login</a>
+      <a class="btn primary" href="register.html">Register</a>
+      <button class="menu">☰</button>
+    </div>
+
+  </div>
+</header>
+
+
+<main class="page container">
+
+  <section
+    class="grid"
+    style="grid-template-columns:1fr 1fr;align-items:center"
+  >
+
+    <article
+      class="card"
+      style="
+        min-height:520px;
+        display:grid;
+        place-items:center;
+      "
+    >
+
+      <div class="stage" style="height:420px;width:100%">
+
+        <div class="ring r2"></div>
+        <div class="ring r1"></div>
+
+        <div class="orb">
+
+          <div class="orb-core">
+            CM
+          </div>
+
+        </div>
+
+      </div>
+
+    </article>
+
+
+    <article>
+
+      <span class="eyebrow">
+        Product Detail
+      </span>
+
+      <h1>
+        Product details,
+        <em>without the noise.</em>
+      </h1>
+
+      <p>
+        Select a product from your search results
+        to populate this detail workspace with
+        documented backend data.
+      </p>
+
+
+      <div
+        class="grid"
+        style="
+          grid-template-columns:1fr 1fr;
+          margin-top:25px;
+        "
+      >
+
+        <article class="card">
+
+          <small style="color:var(--muted)">
+            PRICE
+          </small>
+
+          <h3 style="font-size:28px;margin-top:8px">
+            —
+          </h3>
+
+        </article>
+
+
+        <article class="card">
+
+          <small style="color:var(--muted)">
+            RATING
+          </small>
+
+          <h3 style="font-size:28px;margin-top:8px">
+            —
+          </h3>
+
+        </article>
+
+      </div>
+
+
+      <article
+        class="card"
+        style="margin-top:18px"
+      >
+
+        <span class="eyebrow">
+          Product Insight
+        </span>
+
+        <h3 style="margin-top:12px">
+          Ready for real data
+        </h3>
+
+        <p style="margin-top:8px">
+          No fake product information is embedded.
+          Connect the documented API response
+          fields here when available.
+        </p>
+
+        <button
+  id="whyThisButton"
+  class="btn primary"
+  type="button"
+  style="margin-top:14px"
+>
+  Why this? ✨
+</button>
+
+<div
+  id="whyThisResult"
+  class="card"
+  style="display:none;margin-top:14px"
+>
+  <span class="eyebrow">
+    CARTMIND EXPLANATION
+  </span>
+
+  <p
+    id="whyThisText"
+    style="margin-top:10px"
+  ></p>
+</div>
+
+      </article>
+
+    </article>
+
+  </section>
+
+</main>
+
+
+<footer class="footer">
+
+  <div class="container">
+
+    <b>CartMind AI</b>
+
+    <span>
+      Shop smarter. Decide better.
+    </span>
+
+  </div>
+
+</footer>
+
+<script>
+
+document.addEventListener(
+  "DOMContentLoaded",
+  () => {
+
+    /* =========================
+       GET PRODUCT ID FROM URL
+    ========================= */
+
+    const params =
+      new URLSearchParams(
+        window.location.search
+      );
+
+    const productId =
+      Number(
+        params.get("id")
+      );
+
+
+    /* =========================
+       FIND PAGE ELEMENTS
+    ========================= */
+
+    const main =
+      document.querySelector(
+        "main.page.container"
+      );
+
+
+    if (!main) {
+      return;
+    }
+
+
+    const mainSection =
+      main.querySelector(
+        "section.grid"
+      );
+
+
+    if (!mainSection) {
+      return;
+    }
+
+
+    const rightPanel =
+      mainSection.querySelector(
+        ":scope > article:nth-child(2)"
+      );
+
+
+    if (!rightPanel) {
+      return;
+    }
+
+
+    const title =
+      rightPanel.querySelector(
+        "h1"
+      );
+
+
+    const description =
+      rightPanel.querySelector(
+        "p"
+      );
+
+
+    const infoCards =
+      rightPanel.querySelectorAll(
+        ":scope > .grid .card"
+      );
+
+
+    const insightCard =
+      rightPanel.querySelector(
+        ":scope > .card:last-child"
+      );
+
+
+    const savedResults =
+      localStorage.getItem(
+        "cm_r"
+      );
+
+
+    /* =========================
+       NO PRODUCT ID
+    ========================= */
+
+    if (!productId) {
+
+      if (title) {
+
+        title.innerHTML =
+          "Product details, <em>not selected.</em>";
+
+      }
+
+
+      if (description) {
+
+        description.textContent =
+          "Open a product from the Products page using View Details.";
+
+      }
+
+
+      return;
+
+    }
+
+
+    /* =========================
+       NO SAVED DATA
+    ========================= */
+
+    if (!savedResults) {
+
+      if (title) {
+
+        title.innerHTML =
+          "Product details, <em>unavailable.</em>";
+
+      }
+
+
+      if (description) {
+
+        description.textContent =
+          "No saved product search data is available. Return to Products and search again.";
+
+      }
+
+
+      return;
+
+    }
+
+
+    let data;
+
+
+    try {
+
+      data =
+        JSON.parse(
+          savedResults
+        );
+
+    } catch (error) {
+
+      console.error(
+        "Unable to read saved product data:",
+        error
+      );
+
+      return;
+
+    }
+
+
+    /* =========================
+       USE ORIGINAL PRODUCTS ARRAY
+       BECAUSE IT CONTAINS DB ID
+    ========================= */
+
+    const products =
+      Array.isArray(
+        data?.products
+      )
+        ? data.products
+        : [];
+
+
+    const product =
+      products.find(
+        item =>
+          Number(item?.id) ===
+          productId
+      );
+
+
+    /* =========================
+       PRODUCT NOT FOUND
+    ========================= */
+
+    if (!product) {
+
+      if (title) {
+
+        title.innerHTML =
+          "Product not <em>found.</em>";
+
+      }
+
+
+      if (description) {
+
+        description.textContent =
+          "This product is not available in the current saved search results.";
+
+      }
+
+
+      return;
+
+    }
+
+
+    /* =========================
+       PRODUCT NAME
+    ========================= */
+
+    if (title) {
+
+      title.innerHTML =
+        `${escapeHtml(product.name || "Product Details")}`;
+
+    }
+
+
+    /* =========================
+       PRODUCT DESCRIPTION
+    ========================= */
+
+    if (description) {
+
+      description.textContent =
+        product.description ||
+        "No description available.";
+
+    }
+
+
+    /* =========================
+       PRICE
+    ========================= */
+
+    if (infoCards[0]) {
+
+      const priceHeading =
+        infoCards[0].querySelector(
+          "h3"
+        );
+
+
+      if (priceHeading) {
+
+        priceHeading.textContent =
+          formatPrice(
+            product.price
+          );
+
+      }
+
+    }
+
+
+    /* =========================
+       RATING
+    ========================= */
+
+    if (infoCards[1]) {
+
+      const ratingHeading =
+        infoCards[1].querySelector(
+          "h3"
+        );
+
+
+      if (ratingHeading) {
+
+        ratingHeading.textContent =
+          product.rating !== null &&
+          product.rating !== undefined
+            ? `★ ${product.rating}`
+            : "Unavailable";
+
+      }
+
+    }
+
+
+    /* =========================
+       PRODUCT INSIGHT
+    ========================= */
+
+    if (insightCard) {
+
+      const insightTitle =
+        insightCard.querySelector(
+          "h3"
+        );
+
+
+      const insightText =
+        insightCard.querySelector(
+          "p"
+        );
+
+
+      if (insightTitle) {
+
+        insightTitle.textContent =
+          product.name ||
+          "Product Information";
+
+      }
+
+
+      const specs =
+        formatDetailsAttributes(
+          product.attributes
+        );
+
+
+      const source =
+        product.live === true
+          ? `LIVE · ${product.provider || "SOURCE"}`
+          : `DEMO · ${product.provider || "SOURCE"}`;
+
+
+      const availability =
+        product.availability ||
+        "Unavailable";
+
+
+      if (insightText) {
+
+        insightText.innerHTML = `
+
+          <strong>
+            Source:
+          </strong>
+          ${escapeHtml(source)}
+
+          <br><br>
+
+          <strong>
+            Availability:
+          </strong>
+          ${escapeHtml(availability)}
+
+          ${
+            specs
+              ? `
+                <br><br>
+
+                <strong>
+                  Specifications:
+                </strong>
+
+                <br>
+
+                ${specs}
+              `
+              : ""
+          }
+
+        `;
+
+      }
+
+    }
+
+
+    /* =========================
+       PRODUCT IMAGE
+    ========================= */
+
+    const stage =
+      mainSection.querySelector(
+        ".stage"
+      );
+
+
+    if (
+      stage &&
+      product.imageUrl
+    ) {
+
+      const orb =
+        stage.querySelector(
+          ".orb"
+        );
+
+
+      if (orb) {
+
+        orb.innerHTML = `
+
+          <img
+            src="${escapeHtml(
+              product.imageUrl
+            )}"
+            alt="${escapeHtml(
+              product.name ||
+              "Product"
+            )}"
+            style="
+              width:220px;
+              height:220px;
+              object-fit:contain;
+              border-radius:20px;
+            "
+          >
+
+        `;
+
+      }
+
+    }
+
+  }
+);
+
+
+/* =========================
+   DETAILS HELPERS
+========================= */
+
+function formatPrice(price) {
+
+  if (
+    price === null ||
+    price === undefined ||
+    price === ""
+  ) {
+
+    return "Price unavailable";
+
+  }
+
+
+  const numericPrice =
+    Number(price);
+
+
+  if (Number.isNaN(numericPrice)) {
+
+    return "Price unavailable";
+
+  }
+
+
+  return new Intl.NumberFormat(
+    "en-IN",
+    {
+      style: "currency",
+      currency: "INR",
+      maximumFractionDigits: 0
+    }
+  ).format(
+    numericPrice
+  );
+
+}
+
+
+function formatDetailsAttributes(
+  attributes
+) {
+
+  if (!attributes) {
+
+    return "";
+
+  }
+
+
+  if (
+    typeof attributes === "string"
+  ) {
+
+    try {
+
+      attributes =
+        JSON.parse(
+          attributes
+        );
+
+    } catch (error) {
+
+      return escapeHtml(
+        attributes
+      );
+
+    }
+
+  }
+
+
+  if (
+    typeof attributes === "object" &&
+    !Array.isArray(attributes)
+  ) {
+
+    return Object.entries(
+      attributes
+    )
+      .map(
+        ([key, value]) => {
+
+          return `
+            <span style="display:block;margin-top:6px">
+              <strong>
+                ${escapeHtml(key)}:
+              </strong>
+              ${escapeHtml(value)}
+            </span>
+          `;
+
+        }
+      )
+      .join("");
+
+  }
+
+
+  return escapeHtml(
+    String(attributes)
+  );
+
+}
+
+
+function escapeHtml(value) {
+
+  return String(value ?? "")
+    .replace(
+      /&/g,
+      "&amp;"
+    )
+    .replace(
+      /</g,
+      "&lt;"
+    )
+    .replace(
+      />/g,
+      "&gt;"
+    )
+    .replace(
+      /"/g,
+      "&quot;"
+    )
+    .replace(
+      /'/g,
+      "&#039;"
+    );
+
+}
+
+</script>
+
+
+<script src="js/config.js"></script>
+<script src="js/api.js"></script>
+<script src="js/validation.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/app.js"></script>
+
+<script>
+
+document.addEventListener(
+  "DOMContentLoaded",
+  () => {
+
+    const whyThisButton =
+      document.querySelector(
+        "#whyThisButton"
+      );
+
+    const whyThisResult =
+      document.querySelector(
+        "#whyThisResult"
+      );
+
+    const whyThisText =
+      document.querySelector(
+        "#whyThisText"
+      );
+
+
+    if (
+      !whyThisButton ||
+      !whyThisResult ||
+      !whyThisText
+    ) {
+      return;
+    }
+
+
+    /* =========================
+       GET PRODUCT ID
+    ========================= */
+
+    const params =
+      new URLSearchParams(
+        window.location.search
+      );
+
+    const productId =
+      Number(
+        params.get("id")
+      );
+
+
+    /* =========================
+       GET SEARCH QUERY
+    ========================= */
+
+    const query =
+      localStorage.getItem(
+        "cm_q"
+      ) || "";
+
+
+    /* =========================
+       WHY THIS
+    ========================= */
+
+    whyThisButton.addEventListener(
+      "click",
+      async () => {
+
+        if (!productId) {
+
+          whyThisResult.style.display =
+            "block";
+
+          whyThisText.textContent =
+            "Product ID is not available.";
+
+          return;
+
+        }
+
+
+        try {
+
+          whyThisButton.disabled =
+            true;
+
+          whyThisButton.textContent =
+            "Analyzing...";
+
+
+          whyThisResult.style.display =
+            "block";
+
+
+          whyThisText.textContent =
+            "CartMind is checking the available product data...";
+
+
+          const explanation =
+            await CMApi.explainProduct(
+              query,
+              productId
+            );
+
+
+          /*
+           * Backend /api/ai/explain
+           * currently returns the explanation
+           * directly as a string.
+           */
+
+          const text =
+            typeof explanation === "string"
+              ? explanation
+              : (
+                  explanation?.message ||
+                  explanation?.explanation ||
+                  JSON.stringify(
+                    explanation
+                  )
+                );
+
+
+          whyThisText.textContent =
+            text;
+
+
+        } catch (error) {
+
+          console.error(
+            "Why this error:",
+            error
+          );
+
+
+          whyThisResult.style.display =
+            "block";
+
+
+          whyThisText.textContent =
+            error.message ||
+            "Unable to generate the explanation.";
+
+
+        } finally {
+
+          whyThisButton.disabled =
+            false;
+
+          whyThisButton.textContent =
+            "Why this? ✨";
+
+        }
+
+      }
+    );
+
+  }
+
+);
+
+</script>
+
+</body>
+</html>

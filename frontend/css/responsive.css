@@ -1,0 +1,373 @@
+/* =========================================
+   CartMind AI - Responsive System
+   ========================================= */
+
+/* ---------- Large Desktop ---------- */
+
+@media (min-width: 1400px) {
+  .container {
+    max-width: 1240px;
+  }
+
+  .hero {
+    min-height: 720px;
+  }
+
+  .hero h1 {
+    font-size: clamp(58px, 5vw, 82px);
+  }
+
+  .section {
+    padding-top: 100px;
+    padding-bottom: 100px;
+  }
+
+  .grid {
+    gap: 24px;
+  }
+}
+
+/* ---------- Laptop / Tablet ---------- */
+
+@media (max-width: 1100px) {
+  .container {
+    width: min(100% - 40px, 1000px);
+  }
+
+  .hero {
+    grid-template-columns: 1fr .85fr;
+    gap: 35px;
+  }
+
+  .hero h1 {
+    font-size: clamp(46px, 6vw, 66px);
+  }
+
+  .stage {
+    transform: scale(.88);
+  }
+
+  .products-grid,
+  .product-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .compare-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- Tablet ---------- */
+
+@media (max-width: 900px) {
+  .container {
+    width: min(100% - 32px, 760px);
+  }
+
+  .hero {
+    grid-template-columns: 1fr;
+    min-height: auto;
+    padding-top: 65px;
+    padding-bottom: 65px;
+  }
+
+  .hero-content {
+    max-width: 720px;
+  }
+
+  .stage {
+    min-height: 480px;
+    transform: scale(.82);
+  }
+
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .features-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .comparison-table {
+    overflow-x: auto;
+  }
+
+  .comparison-table table {
+    min-width: 650px;
+  }
+
+  .details-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .assistant-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- Mobile ---------- */
+
+@media (max-width: 700px) {
+  .container {
+    width: min(100% - 24px, 620px);
+  }
+
+  body {
+    font-size: 14px;
+  }
+
+  h1 {
+    font-size: 38px;
+  }
+
+  h2 {
+    font-size: 28px;
+  }
+
+  h3 {
+    font-size: 18px;
+  }
+
+  .section {
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
+
+  /* Hero */
+
+  .hero {
+    padding-top: 45px;
+    padding-bottom: 45px;
+  }
+
+  .hero h1 {
+    font-size: clamp(38px, 12vw, 52px);
+    line-height: .98;
+  }
+
+  .hero p {
+    font-size: 13px;
+  }
+
+  .hero .search {
+    flex-direction: column;
+  }
+
+  .hero .search input,
+  .hero .search button {
+    width: 100%;
+  }
+
+  .stage {
+    min-height: 390px;
+    transform: scale(.68);
+    margin-top: -20px;
+  }
+
+  /* Generic grids */
+
+  .grid,
+  .features-grid,
+  .products-grid,
+  .product-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Cards */
+
+  .card {
+    padding: 20px;
+  }
+
+  /* Search */
+
+  .search-box {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .search-box input,
+  .search-box button {
+    width: 100%;
+  }
+
+  /* Buttons */
+
+  .btn {
+    min-height: 44px;
+    padding-inline: 16px;
+  }
+
+  /* Comparison */
+
+  .compare-form {
+    grid-template-columns: 1fr;
+  }
+
+  .vs-badge {
+    margin: 4px auto;
+  }
+
+  .comparison-table {
+    border-radius: 14px;
+  }
+
+  /* Assistant */
+
+  .chat-container {
+    min-height: 430px;
+    max-height: 60vh;
+  }
+
+  .chat-message {
+    max-width: 88%;
+  }
+
+  .assistant-form {
+    flex-direction: column;
+  }
+
+  .assistant-form input,
+  .assistant-form textarea,
+  .assistant-form button {
+    width: 100%;
+  }
+
+  /* Details */
+
+  .detail-stage {
+    min-height: 420px;
+  }
+
+  .detail-info {
+    grid-template-columns: 1fr;
+  }
+
+  /* Auth */
+
+  .auth-card {
+    width: 100%;
+    padding: 24px 18px;
+  }
+
+  .auth-layout {
+    min-height: auto;
+    padding: 45px 0;
+  }
+
+  /* Footer */
+
+  .footer .container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+}
+
+/* ---------- Small Mobile ---------- */
+
+@media (max-width: 480px) {
+  .container {
+    width: min(100% - 20px, 430px);
+  }
+
+  .hero h1 {
+    font-size: 35px;
+  }
+
+  .eyebrow {
+    font-size: 9px;
+  }
+
+  .section {
+    padding-top: 45px;
+    padding-bottom: 45px;
+  }
+
+  .stage {
+    min-height: 330px;
+    transform: scale(.56);
+    margin-left: -35px;
+    margin-right: -35px;
+  }
+
+  .float {
+    transform: scale(.82);
+  }
+
+  .float.f1 {
+    top: 10%;
+  }
+
+  .float.f2 {
+    bottom: 12%;
+  }
+
+  .float.f3 {
+    display: none;
+  }
+
+  .modal {
+    padding: 10px;
+  }
+
+  .modal-content {
+    max-height: 90vh;
+  }
+
+  .toast {
+    left: 10px;
+    right: 10px;
+  }
+}
+
+/* ---------- Touch Devices ---------- */
+
+@media (hover: none) and (pointer: coarse) {
+  .btn:hover,
+  .card:hover,
+  .navlinks a:hover,
+  .brand:hover .brand-logo {
+    transform: none;
+  }
+
+  .btn {
+    min-height: 44px;
+  }
+}
+
+/* ---------- Accessibility ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+  }
+}
+
+/* ---------- Print ---------- */
+
+@media print {
+  .navbar,
+  .footer,
+  .btn,
+  .menu,
+  .stage,
+  .modal {
+    display: none !important;
+  }
+
+  body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+
+  .container {
+    width: 100%;
+    max-width: none;
+  }
+}

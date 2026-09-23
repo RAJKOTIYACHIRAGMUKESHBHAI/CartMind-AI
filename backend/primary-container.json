@@ -1,0 +1,36 @@
+{
+  "image": "877133239869.dkr.ecr.eu-north-1.amazonaws.com/cartmind-backend:latest",
+  "containerPort": 8080,
+  "environment": [
+    {
+      "name": "DB_URL",
+      "value": "jdbc:mysql://cartmind-db.c3yii2y64es0.eu-north-1.rds.amazonaws.com:3306/cartmind?useSSL=false&serverTimezone=Asia/Kolkata&allowPublicKeyRetrieval=true"
+    },
+    {
+      "name": "DB_USERNAME",
+      "value": "cartmind_admin"
+    },
+    {
+      "name": "CARTMIND_AI_ENABLED",
+      "value": "true"
+    },
+    {
+      "name": "CARTMIND_LOCAL_PROVIDER_ENABLED",
+      "value": "true"
+    },
+    {
+      "name": "AWS_REGION",
+      "value": "eu-north-1"
+    },
+    {
+      "name": "BEDROCK_MODEL_ID",
+      "value": "global.anthropic.claude-haiku-4-5-20251001-v1:0"
+    }
+  ],
+  "secrets": [
+    {
+      "name": "DB_PASSWORD",
+      "valueFrom": "arn:aws:secretsmanager:eu-north-1:877133239869:secret:cartmind/rds-password-YgrSu2"
+    }
+  ]
+}

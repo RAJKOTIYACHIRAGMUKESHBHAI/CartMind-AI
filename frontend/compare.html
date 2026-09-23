@@ -1,0 +1,1293 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width,initial-scale=1"
+  >
+
+  <title>Compare | CartMind AI</title>
+
+  <link
+    rel="stylesheet"
+    href="css/main.css"
+  >
+
+  <style>
+
+    .compare-products {
+      display: grid;
+      grid-template-columns: 1fr 70px 1fr;
+      gap: 20px;
+      align-items: center;
+      margin-top: 30px;
+    }
+
+    .compare-card {
+      padding: 22px;
+      border-radius: 22px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
+    }
+
+    .compare-card.selected {
+      border-color: rgba(82,210,255,.6);
+    }
+
+    .compare-option-label {
+      display: block;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      margin-bottom: 14px;
+      opacity: .75;
+    }
+
+    .compare-image {
+      width: 100%;
+      height: 180px;
+      border-radius: 16px;
+      background: rgba(5,10,25,.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      margin-bottom: 16px;
+    }
+
+    .compare-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .compare-placeholder {
+      font-size: 42px;
+      font-weight: 800;
+      opacity: .7;
+    }
+
+    .compare-name {
+      font-size: 20px;
+      font-weight: 800;
+      line-height: 1.35;
+      margin-bottom: 10px;
+    }
+
+    .compare-meta {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin: 12px 0;
+    }
+
+    .compare-price {
+      font-size: 20px;
+      font-weight: 800;
+    }
+
+    .compare-select {
+      width: 100%;
+      padding: 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,.15);
+      background: #0b1020;
+      color: white;
+      margin-top: 12px;
+    }
+
+    .vs-box {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: auto;
+      font-weight: 900;
+      border: 1px solid rgba(255,255,255,.15);
+      background: rgba(255,255,255,.06);
+    }
+
+    .comparison-result {
+      margin-top: 35px;
+      display: none;
+    }
+
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 18px;
+    }
+
+    .comparison-table th,
+    .comparison-table td {
+      padding: 15px;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .comparison-table th {
+      background: rgba(255,255,255,.05);
+    }
+
+    .compare-empty {
+      margin-top: 25px;
+    }
+
+    @media (max-width: 850px) {
+
+      .compare-products {
+        grid-template-columns: 1fr;
+      }
+
+      .vs-box {
+        margin: 5px auto;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+<header class="navbar">
+
+  <div class="container nav">
+
+    <a
+      class="brand"
+      href="index.html"
+    >
+
+      <img
+        class="brand-logo"
+        src="assets/logo/cartmind-main-logo(1).png"
+        alt="CartMind AI logo"
+      >
+
+      <span>
+
+        <b>CartMind AI</b>
+
+        <small>
+          AI shopping intelligence
+        </small>
+
+      </span>
+
+    </a>
+
+
+    <nav class="navlinks">
+
+      <a href="index.html">
+        Home
+      </a>
+
+      <a href="products.html">
+        Products
+      </a>
+
+      <a
+        class="active"
+        href="compare.html"
+      >
+        Compare
+      </a>
+
+      <a href="assistant.html">
+        AI Assistant
+      </a>
+
+    </nav>
+
+
+    <div class="navbtns">
+
+      <a
+        class="btn"
+        href="login.html"
+      >
+        Login
+      </a>
+
+      <a
+        class="btn primary"
+        href="register.html"
+      >
+        Register
+      </a>
+
+      <button
+        class="menu"
+        type="button"
+      >
+        ☰
+      </button>
+
+    </div>
+
+  </div>
+
+</header>
+
+
+
+<main class="page container">
+
+  <span class="eyebrow">
+    DECISION LAB
+  </span>
+
+
+  <h1>
+    Compare with
+    <em>clarity.</em>
+  </h1>
+
+
+  <p class="wide">
+    Select two products from your latest CartMind search
+    and compare their available product information.
+  </p>
+
+
+  <div
+    id="latestQuery"
+    style="margin-top:15px"
+  ></div>
+
+
+
+  <!-- =========================
+       NO PRODUCTS
+  ========================= -->
+
+  <section
+    id="compareEmpty"
+    class="card compare-empty"
+    style="display:none"
+  >
+
+    <span class="eyebrow">
+      NO SEARCH DATA
+    </span>
+
+    <h2 style="margin:12px 0 8px">
+      Search for products first
+    </h2>
+
+    <p>
+      Go to Products, perform a search, and then
+      return here to compare the results.
+    </p>
+
+    <a
+      href="products.html"
+      class="btn primary"
+      style="display:inline-block;margin-top:15px"
+    >
+      Find Products →
+    </a>
+
+  </section>
+
+
+
+  <!-- =========================
+       COMPARE SETUP
+  ========================= -->
+
+  <section
+    id="compareSetup"
+    style="display:none"
+  >
+
+    <div class="compare-products">
+
+
+      <!-- PRODUCT A -->
+
+      <article
+        id="cardA"
+        class="compare-card"
+      >
+
+        <span class="compare-option-label">
+          OPTION A
+        </span>
+
+
+        <div
+          id="imageA"
+          class="compare-image"
+        >
+
+          <div class="compare-placeholder">
+            CM
+          </div>
+
+        </div>
+
+
+        <div
+          id="sourceA"
+          class="eyebrow"
+        >
+          SELECT PRODUCT
+        </div>
+
+
+        <div
+          id="nameA"
+          class="compare-name"
+        >
+          Select first product
+        </div>
+
+
+        <div class="compare-meta">
+
+          <span
+            id="priceA"
+            class="compare-price"
+          >
+            —
+          </span>
+
+          <span
+            id="ratingA"
+          >
+            —
+          </span>
+
+        </div>
+
+
+        <p id="descA">
+          Select a product to see its details.
+        </p>
+
+
+        <select
+          id="compareA"
+          class="compare-select"
+        >
+
+          <option value="">
+            Select first product
+          </option>
+
+        </select>
+
+      </article>
+
+
+
+      <!-- VS -->
+
+      <div class="vs-box">
+        VS
+      </div>
+
+
+
+      <!-- PRODUCT B -->
+
+      <article
+        id="cardB"
+        class="compare-card"
+      >
+
+        <span class="compare-option-label">
+          OPTION B
+        </span>
+
+
+        <div
+          id="imageB"
+          class="compare-image"
+        >
+
+          <div class="compare-placeholder">
+            CM
+          </div>
+
+        </div>
+
+
+        <div
+          id="sourceB"
+          class="eyebrow"
+        >
+          SELECT PRODUCT
+        </div>
+
+
+        <div
+          id="nameB"
+          class="compare-name"
+        >
+          Select second product
+        </div>
+
+
+        <div class="compare-meta">
+
+          <span
+            id="priceB"
+            class="compare-price"
+          >
+            —
+          </span>
+
+          <span
+            id="ratingB"
+          >
+            —
+          </span>
+
+        </div>
+
+
+        <p id="descB">
+          Select a product to see its details.
+        </p>
+
+
+        <select
+          id="compareB"
+          class="compare-select"
+        >
+
+          <option value="">
+            Select second product
+          </option>
+
+        </select>
+
+      </article>
+
+
+    </div>
+
+
+    <div style="margin-top:20px">
+
+      <button
+        id="compareButton"
+        class="btn primary"
+        type="button"
+      >
+        Compare Products →
+      </button>
+
+      <a
+        href="products.html"
+        class="btn"
+        style="margin-left:8px"
+      >
+        Back to Products
+      </a>
+
+    </div>
+
+
+  </section>
+
+
+
+  <!-- =========================
+       RESULT
+  ========================= -->
+
+  <section
+    id="workspace"
+    class="comparison-result"
+  >
+
+    <span class="eyebrow">
+      COMPARISON RESULT
+    </span>
+
+
+    <h2 style="margin-top:12px">
+      Product comparison
+    </h2>
+
+
+    <div class="card">
+
+      <p>
+        <strong>Trade-offs:</strong>
+      </p>
+
+      <p id="tradeOffSummary">
+        —
+      </p>
+
+    </div>
+
+
+    <div class="tablebox">
+
+      <table class="comparison-table">
+
+        <thead>
+
+          <tr>
+
+            <th>
+              Criteria
+            </th>
+
+            <th id="headA">
+              Product A
+            </th>
+
+            <th id="headB">
+              Product B
+            </th>
+
+          </tr>
+
+        </thead>
+
+
+        <tbody id="comparisonBody">
+
+          <tr>
+
+            <td>
+              Price
+            </td>
+
+            <td>
+              —
+            </td>
+
+            <td>
+              —
+            </td>
+
+          </tr>
+
+
+          <tr>
+
+            <td>
+              Rating
+            </td>
+
+            <td>
+              —
+            </td>
+
+            <td>
+              —
+            </td>
+
+          </tr>
+
+
+          <tr>
+
+            <td>
+              Availability
+            </td>
+
+            <td>
+              —
+            </td>
+
+            <td>
+              —
+            </td>
+
+          </tr>
+
+
+          <tr>
+
+            <td>
+              Specifications
+            </td>
+
+            <td>
+              —
+            </td>
+
+            <td>
+              —
+            </td>
+
+          </tr>
+
+
+          <tr>
+
+            <td>
+              Key Differences
+            </td>
+
+            <td colspan="2">
+              —
+            </td>
+
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </section>
+
+</main>
+
+
+
+<footer class="footer">
+
+  <div class="container">
+
+    <b>
+      CartMind AI
+    </b>
+
+    <span>
+      Shop smarter. Decide better.
+    </span>
+
+  </div>
+
+</footer>
+
+
+
+<script src="js/config.js"></script>
+<script src="js/api.js"></script>
+<script src="js/validation.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/app.js"></script>
+
+
+<script>
+
+document.addEventListener(
+  "DOMContentLoaded",
+  () => {
+
+    const compareA =
+      document.querySelector("#compareA");
+
+    const compareB =
+      document.querySelector("#compareB");
+
+    const setup =
+      document.querySelector("#compareSetup");
+
+    const empty =
+      document.querySelector("#compareEmpty");
+
+    const compareButton =
+      document.querySelector("#compareButton");
+
+    const workspace =
+      document.querySelector("#workspace");
+
+    const latestQuery =
+      document.querySelector("#latestQuery");
+
+
+    let products = [];
+
+
+    /* =========================
+       LOAD SAVED SEARCH
+    ========================= */
+
+    const savedQuery =
+      localStorage.getItem("cm_q");
+
+    const savedResults =
+      localStorage.getItem("cm_r");
+
+
+    if (savedQuery) {
+
+      latestQuery.textContent =
+        `Latest search: ${savedQuery}`;
+
+    }
+
+
+    if (!savedResults) {
+
+      empty.style.display =
+        "block";
+
+      return;
+
+    }
+
+
+    try {
+
+      const data =
+        JSON.parse(savedResults);
+
+
+      const items =
+        data?.rankedProducts?.length
+          ? data.rankedProducts
+          : (data?.products || []).map(
+              product => ({
+                product
+              })
+            );
+
+
+      products =
+        items
+          .map(item =>
+            item?.product || item
+          )
+          .filter(product =>
+            product &&
+            product.id
+          );
+
+
+    } catch (error) {
+
+      console.error(
+        "Compare data error:",
+        error
+      );
+
+      empty.style.display =
+        "block";
+
+      return;
+
+    }
+
+
+    if (!products.length) {
+
+      empty.style.display =
+        "block";
+
+      return;
+
+    }
+
+
+    setup.style.display =
+      "block";
+
+
+    /* =========================
+       FILL DROPDOWNS
+    ========================= */
+
+    products.forEach(product => {
+
+      const optionA =
+        document.createElement("option");
+
+      optionA.value =
+        product.id;
+
+      optionA.textContent =
+        product.name ||
+        `Product ${product.id}`;
+
+      compareA.appendChild(
+        optionA
+      );
+
+
+      const optionB =
+        document.createElement("option");
+
+      optionB.value =
+        product.id;
+
+      optionB.textContent =
+        product.name ||
+        `Product ${product.id}`;
+
+      compareB.appendChild(
+        optionB
+      );
+
+    });
+
+
+    /* =========================
+       PREVIEW
+    ========================= */
+
+    function updateCard(
+      select,
+      suffix
+    ) {
+
+      const id =
+        Number(select.value);
+
+
+      const card =
+        document.querySelector(
+          `#card${suffix}`
+        );
+
+
+      if (!id) {
+
+        card.classList.remove(
+          "selected"
+        );
+
+        return;
+
+      }
+
+
+      const product =
+        products.find(
+          item =>
+            Number(item.id) === id
+        );
+
+
+      if (!product) {
+        return;
+      }
+
+
+      card.classList.add(
+        "selected"
+      );
+
+
+      const image =
+        document.querySelector(
+          `#image${suffix}`
+        );
+
+
+      const source =
+        document.querySelector(
+          `#source${suffix}`
+        );
+
+
+      const name =
+        document.querySelector(
+          `#name${suffix}`
+        );
+
+
+      const price =
+        document.querySelector(
+          `#price${suffix}`
+        );
+
+
+      const rating =
+        document.querySelector(
+          `#rating${suffix}`
+        );
+
+
+      const desc =
+        document.querySelector(
+          `#desc${suffix}`
+        );
+
+
+      image.innerHTML =
+        product.imageUrl
+          ? `
+            <img
+              src="${product.imageUrl}"
+              alt="${product.name || "Product"}"
+            >
+          `
+          : `
+            <div class="compare-placeholder">
+              CM
+            </div>
+          `;
+
+
+      source.textContent =
+        product.live === true
+          ? `LIVE · ${product.provider || "SOURCE"}`
+          : `DEMO · ${product.provider || "SOURCE"}`;
+
+
+      name.textContent =
+        product.name ||
+        "Unnamed Product";
+
+
+      price.textContent =
+        product.price !== null &&
+        product.price !== undefined
+          ? new Intl.NumberFormat(
+              "en-IN",
+              {
+                style: "currency",
+                currency: "INR",
+                maximumFractionDigits: 0
+              }
+            ).format(
+              Number(product.price)
+            )
+          : "Price unavailable";
+
+
+      rating.textContent =
+        product.rating !== null &&
+        product.rating !== undefined
+          ? `★ ${product.rating}`
+          : "Rating unavailable";
+
+
+      desc.textContent =
+        product.description ||
+        "No description available.";
+
+    }
+
+
+    compareA.addEventListener(
+      "change",
+      () => {
+        updateCard(
+          compareA,
+          "A"
+        );
+      }
+    );
+
+
+    compareB.addEventListener(
+      "change",
+      () => {
+        updateCard(
+          compareB,
+          "B"
+        );
+      }
+    );
+
+
+    /* =========================
+       COMPARE
+    ========================= */
+
+    compareButton.addEventListener(
+      "click",
+      async () => {
+
+        const idA =
+          Number(compareA.value);
+
+        const idB =
+          Number(compareB.value);
+
+
+        if (!idA || !idB) {
+
+          alert(
+            "Please select both products."
+          );
+
+          return;
+
+        }
+
+
+        if (idA === idB) {
+
+          alert(
+            "Please select two different products."
+          );
+
+          return;
+
+        }
+
+
+        const originalText =
+          compareButton.textContent;
+
+
+        try {
+
+          compareButton.disabled =
+            true;
+
+          compareButton.textContent =
+            "Comparing...";
+
+
+          const data =
+            await CMApi.compareProducts([
+              idA,
+              idB
+            ]);
+
+
+          const comparison =
+            data?.comparison || data;
+
+
+          const productA =
+            products.find(
+              p =>
+                Number(p.id) === idA
+            );
+
+
+          const productB =
+            products.find(
+              p =>
+                Number(p.id) === idB
+            );
+
+
+          document.querySelector(
+            "#headA"
+          ).textContent =
+            productA?.name ||
+            "Product A";
+
+
+          document.querySelector(
+            "#headB"
+          ).textContent =
+            productB?.name ||
+            "Product B";
+
+
+          document.querySelector(
+            "#tradeOffSummary"
+          ).textContent =
+            comparison?.tradeOffSummary ||
+            "No trade-off summary available.";
+
+
+          const body =
+            document.querySelector(
+              "#comparisonBody"
+            );
+
+
+          const differences =
+            Array.isArray(
+              comparison?.keyDifferences
+            )
+              ? comparison.keyDifferences.join(
+                  "<br>"
+                )
+              : (
+                  comparison?.keyDifferences ||
+                  "—"
+                );
+
+
+          body.innerHTML = `
+
+            <tr>
+
+              <td>
+                Price
+              </td>
+
+              <td>
+                ${
+                  productA?.price !== null &&
+                  productA?.price !== undefined
+                    ? new Intl.NumberFormat(
+                        "en-IN",
+                        {
+                          style: "currency",
+                          currency: "INR",
+                          maximumFractionDigits: 0
+                        }
+                      ).format(
+                        Number(productA.price)
+                      )
+                    : "Unavailable"
+                }
+              </td>
+
+              <td>
+                ${
+                  productB?.price !== null &&
+                  productB?.price !== undefined
+                    ? new Intl.NumberFormat(
+                        "en-IN",
+                        {
+                          style: "currency",
+                          currency: "INR",
+                          maximumFractionDigits: 0
+                        }
+                      ).format(
+                        Number(productB.price)
+                      )
+                    : "Unavailable"
+                }
+              </td>
+
+            </tr>
+
+
+            <tr>
+
+              <td>
+                Rating
+              </td>
+
+              <td>
+                ${
+                  productA?.rating ??
+                  "Unavailable"
+                }
+              </td>
+
+              <td>
+                ${
+                  productB?.rating ??
+                  "Unavailable"
+                }
+              </td>
+
+            </tr>
+
+
+            <tr>
+
+              <td>
+                Availability
+              </td>
+
+              <td>
+                ${
+                  productA?.availability ||
+                  "Unavailable"
+                }
+              </td>
+
+              <td>
+                ${
+                  productB?.availability ||
+                  "Unavailable"
+                }
+              </td>
+
+            </tr>
+
+
+            <tr>
+
+              <td>
+                Specifications
+              </td>
+
+              <td>
+                ${
+                  productA?.attributes ||
+                  "Unavailable"
+                }
+              </td>
+
+              <td>
+                ${
+                  productB?.attributes ||
+                  "Unavailable"
+                }
+              </td>
+
+            </tr>
+
+
+            <tr>
+
+              <td>
+                Key Differences
+              </td>
+
+              <td colspan="2">
+                ${differences}
+              </td>
+
+            </tr>
+
+          `;
+
+
+          workspace.style.display =
+            "block";
+
+
+          workspace.scrollIntoView({
+            behavior: "smooth"
+          });
+
+
+        } catch (error) {
+
+          console.error(
+            "Comparison error:",
+            error
+          );
+
+
+          alert(
+            error.message ||
+            "Unable to compare products."
+          );
+
+        } finally {
+
+          compareButton.disabled =
+            false;
+
+          compareButton.textContent =
+            originalText ||
+            "Compare Products →";
+
+        }
+
+      }
+    );
+
+  }
+
+);
+
+</script>
+
+
+</body>
+
+</html>
