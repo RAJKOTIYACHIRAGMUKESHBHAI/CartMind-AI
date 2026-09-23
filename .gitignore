@@ -5,15 +5,40 @@
 
 # Java / Maven
 backend/target/
+target/
 *.class
 
-# Node / Frontend
+# Maven wrapper
+.mvn/wrapper/maven-wrapper.jar
+
+# Frontend
 frontend/node_modules/
 frontend/dist/
 
 # IDE
 .idea/
 *.iml
+*.iws
+*.ipr
+
+# Eclipse / STS
+.classpath
+.factorypath
+.project
+.settings/
+.springBeans
+.sts4-cache
+.apt_generated
+
+# NetBeans
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+# VS Code
+.vscode/
 
 # OS
 .DS_Store
