@@ -1,0 +1,10 @@
+{
+  "name": "CartMind AI Commerce Assistant",
+  "short_name": "CartMind",
+  "start_url": "index.html",
+  "display": "fullscreen",
+  "orientation": "landscape",
+  "description": "AI Shopping Assistant optimized for Amazon Fire TV (Fire OS)",
+  "theme_color": "#000000",
+  "background_color": "#000000"
+}

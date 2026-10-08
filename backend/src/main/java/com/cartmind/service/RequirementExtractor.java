@@ -11,8 +11,9 @@ import software.amazon.awssdk.services.bedrockruntime.model.ContentBlock;
 import software.amazon.awssdk.services.bedrockruntime.model.ConverseRequest;
 import software.amazon.awssdk.services.bedrockruntime.model.ConverseResponse;
 import software.amazon.awssdk.services.bedrockruntime.model.Message;
-import tools.jackson.core.JacksonException;
-import tools.jackson.databind.ObjectMapper;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.core.JsonProcessingException; // Sahi import add kiya gaya
 
 @Service
 public class RequirementExtractor {
@@ -42,10 +43,10 @@ public class RequirementExtractor {
         try {
             return extractUsingBedrock(query);
 
-        } catch (SdkException | JacksonException e) {
+        } catch (Exception e) { // SdkException aur JSON errors dono ko handle karne ke liye Exception use kiya
 
             System.out.println(
-                    "Bedrock unavailable. Using fallback parser. Reason: "
+                    "Bedrock unavailable or failed. Using fallback parser. Reason: "
                             + e.getMessage()
             );
 
@@ -83,8 +84,8 @@ public class RequirementExtractor {
                     cleanJson,
                     ExtractedRequirements.class
             );
-        } catch (JacksonException e) {
-            throw e;
+        } catch (JsonProcessingException e) { // Sahi exception catch kiya gaya
+            throw new RuntimeException("Error parsing JSON response", e);
         }
     }
 
